@@ -7,15 +7,17 @@ import Navigation from './src/services/navigation'
 import { persistor, store } from './src/services/redux/Store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { getVisibilityStatus } from 'react-native-bootsplash'
 
 const App = () => {
   const scheme = useColorScheme()
   const isDarkMode = scheme === 'dark'
 
   React.useEffect(() => {
-    StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content')
+    getVisibilityStatus().then(result => {
+      if (result === 'visible') StatusBar.setBarStyle('light-content')
+    })
     const isAndroid = Platform.OS === 'android'
-
     if (isAndroid) {
       StatusBar.setBackgroundColor('rgba(0,0,0,0)')
       StatusBar.setTranslucent(true)

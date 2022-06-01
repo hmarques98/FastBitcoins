@@ -1,4 +1,4 @@
-export default {
+const _fonts = {
   montserrat: {
     black: 'Montserrat-Black',
     blackItalic: 'Montserrat-BlackItalic',
@@ -19,4 +19,18 @@ export default {
     thin: 'Montserrat-Thin',
     thinItalic: 'Montserrat-ThinItalic',
   },
+  poppins: {
+    bold: 'Poppins-Bold',
+    semiBold: 'Poppins-SemiBold',
+    regular: 'Poppins-Regular',
+    extraBold: 'Poppins-ExtraBold',
+    medium: 'Poppins-Medium',
+  },
+}
+
+export const fonts = {
+  header: _fonts.poppins.medium,
+  body: _fonts.poppins.regular,
+  subtitle: _fonts.poppins.semiBold,
+  title: _fonts.poppins.bold,
 }
