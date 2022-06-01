@@ -29,7 +29,7 @@ const CardItem: React.FC<ICardItemProps> = ({ style, data, onPress }) => {
     [theme, width],
   )
 
-  const { name, description, language, star, fork } = data
+  const { language, star, fork } = data
 
   const Language = useCallback(
     () => (

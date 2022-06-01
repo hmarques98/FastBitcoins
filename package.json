@@ -81,7 +81,7 @@
     "prettier": "cd src && npx prettier --write . && git add .",
     "prepare": "husky install",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint ."
   },
   "resolutions": {
     "@types/react": "^17"
