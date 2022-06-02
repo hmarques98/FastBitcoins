@@ -7,11 +7,5 @@ export interface ICardItem {
 }
 
 export interface IUser {
-  id: string
-  username: string | null
-  fullName?: string | null
-  email?: string | null
-  socialType: string
-  creationDate?: number
-  photo?: string | null
+  email?: string
 }

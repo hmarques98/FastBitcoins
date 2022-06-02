@@ -119,6 +119,7 @@
       { "additionalHooks": "(useMemoOne)" }
     ],
     "react-hooks/rules-of-hooks": "error",
+    "react/no-unstable-nested-components": ["warn", { "allowAsProps": true }],
 
     // React Native
     "react-native/no-unused-styles": "error",

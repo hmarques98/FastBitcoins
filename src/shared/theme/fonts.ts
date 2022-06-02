@@ -20,17 +20,17 @@ const _fonts = {
     thinItalic: 'Montserrat-ThinItalic',
   },
   poppins: {
-    bold: 'Poppins-Bold',
-    semiBold: 'Poppins-SemiBold',
     regular: 'Poppins-Regular',
-    extraBold: 'Poppins-ExtraBold',
     medium: 'Poppins-Medium',
+    semiBold: 'Poppins-SemiBold',
+    bold: 'Poppins-Bold',
+    extraBold: 'Poppins-ExtraBold',
   },
 }
 
 export const fonts = {
-  header: _fonts.poppins.medium,
-  body: _fonts.poppins.regular,
-  subtitle: _fonts.poppins.semiBold,
-  title: _fonts.poppins.bold,
+  body: _fonts.poppins.regular, // 400
+  header: _fonts.poppins.medium, // 500
+  subtitle: _fonts.poppins.semiBold, // 600
+  title: _fonts.poppins.bold, // 700
 }

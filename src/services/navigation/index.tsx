@@ -9,12 +9,21 @@ import { SCREENS } from '@shared-constants'
 import { LightTheme, DarkTheme } from '@theme/themes'
 
 import HomeScreen from 'ui/Auth/screens/Home'
+import AccountEmail from 'ui/Auth/screens/AccountEmail'
 
-const Stack = createStackNavigator()
+import Header from './components/Header'
+
+export type RootStackParamList = {
+  [SCREENS.AUTH_HOME]: undefined
+  [SCREENS.AUTH_ACCOUNT_EMAIL]: undefined
+}
+
+const Stack = createStackNavigator<RootStackParamList>()
 
 const Navigation = () => {
   const scheme = useColorScheme()
   const isDarkMode = scheme === 'dark'
+  const navigationTheme = isDarkMode ? DarkTheme : LightTheme
 
   React.useEffect(() => {
     return () => {
@@ -27,15 +36,26 @@ const Navigation = () => {
       ref={navigationRef}
       onReady={() => {
         isReadyRef.current = true
-        setTimeout(() => {
-          hideSplashScreen()
-          StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content')
-        }, 2000)
+
+        hideSplashScreen()
+        StatusBar.setBarStyle('light-content')
       }}
-      theme={isDarkMode ? DarkTheme : LightTheme}
+      theme={navigationTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={SCREENS.HOME} component={HomeScreen} />
+        <Stack.Screen name={SCREENS.AUTH_HOME} component={HomeScreen} />
+        <Stack.Group
+          screenOptions={{
+            header: ({ options }) => <Header title={options.title!} />,
+            headerShown: true,
+          }}
+        >
+          <Stack.Screen
+            name={SCREENS.AUTH_ACCOUNT_EMAIL}
+            component={AccountEmail}
+            options={{ title: 'Enter your email address' }}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   )

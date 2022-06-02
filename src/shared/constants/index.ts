@@ -1,8 +1,4 @@
-// ? Screens
-export const SCREENS = {
-  HOME: 'Home',
-  SEARCH: 'Search',
-  NOTIFICATION: 'Notification',
-  PROFILE: 'Profile',
-  DETAIL: 'Detail',
+export enum SCREENS {
+  AUTH_HOME = 'AUTH_HOME',
+  AUTH_ACCOUNT_EMAIL = 'AUTH_ACCOUNT_EMAIL',
 }

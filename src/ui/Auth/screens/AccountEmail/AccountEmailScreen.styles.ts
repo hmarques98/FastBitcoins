@@ -5,16 +5,31 @@ import { fonts } from '@fonts'
 export default (theme: ExtendedTheme) => {
   const { colors } = theme
   return StyleSheet.create({
+    touchableContainer: {
+      flex: 1,
+    },
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'space-evenly',
-      backgroundColor: colors.secondary,
+      backgroundColor: colors.background,
+      paddingHorizontal: 24,
+      paddingVertical: 32,
+      justifyContent: 'space-between',
     },
     titleText: {
       fontSize: 32,
       fontFamily: fonts.title,
       color: colors.primary,
+    },
+    containerButton: {
+      backgroundColor: colors.primary,
+      paddingVertical: 18,
+      alignItems: 'center',
+    },
+    textButton: {
+      fontFamily: fonts.title,
+      color: colors.secondary,
+      fontSize: 16,
     },
 
     circleContainer: {

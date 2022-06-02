@@ -1,52 +1,42 @@
 import React, { useMemo } from 'react'
-import { useWindowDimensions } from 'react-native'
-import { useTheme } from '@react-navigation/native'
+import { Text, View } from 'react-native'
+import { useNavigation, useTheme } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import createStyles from './HomeScreen.style'
 
-import Text from '@shared-components/text-wrapper/TextWrapper'
-import useUserClientService from './hooks/useUserClientService'
-import { localTranslate, localTranslateFormat } from 'shared/localization'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { RootStackParamList } from '@services/navigation'
+import { SCREENS } from '@shared-constants'
+import Button from '@shared-components/Button'
 
-interface HomeScreenProps {}
-
-const HomeScreen: React.FC<HomeScreenProps> = () => {
+type NavigationProps = StackNavigationProp<
+  RootStackParamList,
+  SCREENS.AUTH_HOME
+>
+const HomeScreen = () => {
   const theme = useTheme()
+  const { push } = useNavigation<NavigationProps>()
 
-  const { width } = useWindowDimensions()
-
-  const { setUser, user } = useUserClientService()
-
-  const styles = useMemo(
-    () => createStyles(theme, { screenWidth: width }),
-    [theme, width],
-  )
-
-  React.useEffect(() => {
-    const mockUserData = {
-      id: '301395-3150134',
-      username: 'FreakyCoder',
-      fullName: 'Kuray',
-      email: 'freakycoder@gmail.com',
-      socialType: 'google',
-      creationDate: 1652631678000,
-      photo: null,
-    }
-    setUser(mockUserData)
-  }, [setUser])
+  const styles = useMemo(() => createStyles(theme), [theme])
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>
-        {localTranslateFormat(
-          localTranslate.auth.home.fullName,
-          'Henrique',
-          23,
-        )}
-      </Text>
-      <Text>Email{user?.email}</Text>
-      <Text>Username{user?.username}</Text>
+      <View style={styles.circleContainer} />
+      <View style={styles.languageContainer}>
+        <Text style={styles.titleText}>Select your language</Text>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity style={styles.selectLanguageButtonContainer}>
+            <Text style={styles.selectLanguageButtonText}>English</Text>
+          </TouchableOpacity>
+
+          <Button
+            title="Continue"
+            onPress={() => push(SCREENS.AUTH_ACCOUNT_EMAIL)}
+          />
+        </View>
+      </View>
     </SafeAreaView>
   )
 }
