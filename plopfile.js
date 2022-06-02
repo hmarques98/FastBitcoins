@@ -34,52 +34,76 @@ module.exports = plop => {
     ],
   })
 
-  // plop.setGenerator('screen', {
-  //   description: 'Create a common screen',
-  //   // User input prompts provided as arguments to the template
-  //   prompts: [
-  //     {
-  //       // Raw text input
-  //       type: 'input',
-  //       // Variable name for this input
-  //       name: 'name',
-  //       // Prompt to display on command line
-  //       message: 'What is your common screen name?',
-  //     },
-  //   ],
-  //   actions: [
-  //     {
-  //       // Action type 'append' injects a template into an existing file
-  //       type: 'append',
-  //       path: 'src/screens/index.ts',
-  //       // Pattern tells plop where in the file to inject the template
-  //       pattern: `/* PLOP_INJECT_SCREEN */`,
-  //       template: `{{pascalCase name}}: { component: {{pascalCase name}}Screen },`,
-  //     },
-  //     {
-  //       // Action type 'append' injects a template into an existing file
-  //       type: 'append',
-  //       path: 'src/screens/index.ts',
-  //       // Pattern tells plop where in the file to inject the template
-  //       pattern: `/* PLOP_INJECT_IMPORT */`,
-  //       template: `import {{pascalCase name}}Screen from 'screens/{{pascalCase name}}';`,
-  //     },
-  //     {
-  //       // Action type 'append' injects a template into an existing file
-  //       type: 'append',
-  //       path: 'src/screens/index.ts',
-  //       // Pattern tells plop where in the file to inject the template
-  //       pattern: `/* PLOP_INJECT_TYPE */`,
-  //       template: `{{pascalCase name}}: undefined;`,
-  //     },
-  //     {
-  //       // Add a new file
-  //       type: 'add',
-  //       // Path for the new file
-  //       path: 'src/screens/{{pascalCase name}}.tsx',
-  //       // Handlebars template used to generate content of new file
-  //       templateFile: 'plop-templates/CommonScreen.js.hbs',
-  //     },
-  //   ],
-  // })
+  plop.setGenerator('screen', {
+    description: 'Create a screen',
+    // User input prompts provided as arguments to the template
+    prompts: [
+      {
+        // Raw text input
+        type: 'input',
+        // Variable name for this input
+        name: 'name',
+        // Prompt to display on command line
+        message: 'What is your screen name?',
+      },
+    ],
+    actions: [
+      {
+        // Action type 'append' injects a template into an existing file
+        type: 'append',
+        path: 'src/services/navigation/index.tsx',
+        // Pattern tells plop where in the file to inject the template
+        pattern: `/* PLOP_INJECT_SCREEN */`,
+        templateFile: 'plop-templates/Screen.navigation.js.hbs',
+      },
+      {
+        // Action type 'append' injects a template into an existing file
+        type: 'append',
+        path: 'src/services/navigation/index.tsx',
+        // Pattern tells plop where in the file to inject the template
+        pattern: `/* PLOP_INJECT_SCREEN_PARAMS */`,
+        template: `[SCREENS.AUTH_{{constantCase name}}]: undefined`,
+      },
+      {
+        // Action type 'append' injects a template into an existing file
+        type: 'append',
+        path: 'src/services/navigation/index.tsx',
+        // Pattern tells plop where in the file to inject the template
+        pattern: `/* PLOP_INJECT_SCREEN_IMPORT */`,
+        template: `import {{pascalCase name}} from 'ui/Auth/screens/{{pascalCase name}}'`,
+      },
+      {
+        // Action type 'append' injects a template into an existing file
+        type: 'append',
+        path: 'src/services/navigation/Navigation.enums.ts',
+        // Pattern tells plop where in the file to inject the template
+        pattern: `/* PLOP_INJECT_SCREEN */`,
+        template: `{{constantCase name}} = '{{constantCase name}}',`,
+      },
+      {
+        // Add a new file
+        type: 'add',
+        // Path for the new file
+        path: 'src/ui/Auth/screens/{{pascalCase name}}/index.ts',
+        // Handlebars template used to generate content of new file
+        template: `export { default } from './{{pascalCase name}}Screen'`,
+      },
+      {
+        // Add a new file
+        type: 'add',
+        // Path for the new file
+        path: 'src/ui/Auth/screens/{{pascalCase name}}/{{pascalCase name}}Screen.tsx',
+        // Handlebars template used to generate content of new file
+        templateFile: 'plop-templates/Screen.js.hbs',
+      },
+      {
+        // Add a new file
+        type: 'add',
+        // Path for the new file
+        path: 'src/ui/Auth/screens/{{pascalCase name}}/{{pascalCase name}}Screen.styles.ts',
+        // Handlebars template used to generate content of new file
+        templateFile: 'plop-templates/Screen.styles.js.hbs',
+      },
+    ],
+  })
 }
