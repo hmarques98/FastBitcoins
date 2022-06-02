@@ -1,0 +1,26 @@
+import { useTheme } from '@react-navigation/native'
+import React from 'react'
+import { Text, TouchableOpacityProps, TouchableOpacity } from 'react-native'
+import createStyle from './{{pascalCase name}}.styles'
+
+type {{pascalCase name}}Props = {
+  onPress(): void
+  title: string
+} & TouchableOpacityProps
+
+const {{pascalCase name}} = ({ onPress, title, disabled, ...restProps }: {{pascalCase name}}Props) => {
+  const theme = useTheme()
+  const styles = createStyle(theme, { disabled: Boolean(disabled) })
+
+  return (
+    <TouchableOpacity
+      {...restProps}
+      style={ styles.container{{pascalCase name}} }
+      onPress={onPress}
+      disabled={disabled}
+    >
+      <Text style={styles.text{{pascalCase name}} }>{title}</Text>
+    </TouchableOpacity>
+  )
+}
+export default {{pascalCase name}}

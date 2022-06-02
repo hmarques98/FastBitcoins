@@ -60,6 +60,7 @@
     "jest-extended": "2.0.0",
     "jest-transform-stub": "2.0.0",
     "metro-react-native-babel-preset": "0.71.0",
+    "plop": "^3.1.0",
     "prettier": "2.6.2",
     "react-devtools": "^4.22.0",
     "react-native-flipper": "0.146.1",
@@ -84,7 +85,8 @@
     "prettier": "cd src && npx prettier --write . && git add .",
     "prepare": "husky install",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "generate": "plop"
   },
   "resolutions": {
     "@types/react": "^17"
