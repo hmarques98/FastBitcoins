@@ -3,13 +3,13 @@ import { Text, View } from 'react-native'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+
+import { RootStackParamList } from '@services/navigation'
+import Button from '@shared-components/Button'
+import { SCREENS } from '@services/navigation/Navigation.enums'
 
 import createStyles from './HomeScreen.style'
-
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { RootStackParamList } from '@services/navigation'
-import { SCREENS } from '@shared-constants'
-import Button from '@shared-components/Button'
 
 type NavigationProps = StackNavigationProp<
   RootStackParamList,

@@ -1,8 +1,9 @@
-import { setEmail as _setEmail } from '@services/redux/slices/user/UserReducers'
-import { useAppDispatch, useAppSelector } from '@services/redux/Store'
 import { useCallback } from 'react'
 
-const useUserService = () => {
+import { useAppDispatch, useAppSelector } from '@services/redux/Store'
+import { setEmail as _setEmail } from '@services/redux/slices/user/UserReducers'
+
+const useUserClientService = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.user.userData)
 
@@ -19,4 +20,4 @@ const useUserService = () => {
   }
 }
 
-export default useUserService
+export default useUserClientService

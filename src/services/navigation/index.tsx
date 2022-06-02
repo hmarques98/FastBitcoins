@@ -5,17 +5,20 @@ import { NavigationContainer } from '@react-navigation/native'
 import { isReadyRef, navigationRef } from 'react-navigation-helpers'
 import { hide as hideSplashScreen } from 'react-native-bootsplash'
 
-import { SCREENS } from '@shared-constants'
 import { LightTheme, DarkTheme } from '@theme/themes'
 
 import HomeScreen from 'ui/Auth/screens/Home'
 import AccountEmail from 'ui/Auth/screens/AccountEmail'
+/* PLOP_INJECT_SCREEN_IMPORT */
 
 import Header from './components/Header'
+import { SCREENS } from './Navigation.enums'
 
 export type RootStackParamList = {
   [SCREENS.AUTH_HOME]: undefined
   [SCREENS.AUTH_ACCOUNT_EMAIL]: undefined
+  [SCREENS.AUTH_NEW_ACCOUNT]: undefined
+  /* PLOP_INJECT_SCREEN_PARAMS */
 }
 
 const Stack = createStackNavigator<RootStackParamList>()
@@ -55,6 +58,12 @@ const Navigation = () => {
             component={AccountEmail}
             options={{ title: 'Enter your email address' }}
           />
+          <Stack.Screen
+            name={SCREENS.AUTH_NEW_ACCOUNT}
+            component={AccountEmail}
+            options={{ title: 'Your new account' }}
+          />
+          {/* PLOP_INJECT_SCREEN */}
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

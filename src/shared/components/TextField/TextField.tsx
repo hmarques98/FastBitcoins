@@ -26,7 +26,6 @@ const TextField = ({ label, ...restProps }: TextFieldProps) => {
           keyboardType="email-address"
           returnKeyType="go"
           enablesReturnKeyAutomatically
-          placeholder="Your email address"
           style={styles.textField}
         />
       </View>
