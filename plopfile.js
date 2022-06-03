@@ -46,6 +46,14 @@ module.exports = plop => {
         // Prompt to display on command line
         message: 'What is your screen name?',
       },
+      {
+        // Raw text input
+        type: 'input',
+        // Variable name for this input
+        name: 'module',
+        // Prompt to display on command line
+        message: 'What is your module name for your screen?',
+      },
     ],
     actions: [
       {
@@ -62,7 +70,7 @@ module.exports = plop => {
         path: 'src/services/navigation/index.tsx',
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_SCREEN_PARAMS */`,
-        template: `[SCREENS.AUTH_{{constantCase name}}]: undefined`,
+        template: `[SCREENS.{{constantCase module}}_{{constantCase name}}]: undefined`,
       },
       {
         // Action type 'append' injects a template into an existing file
@@ -70,7 +78,7 @@ module.exports = plop => {
         path: 'src/services/navigation/index.tsx',
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_SCREEN_IMPORT */`,
-        template: `import {{pascalCase name}} from 'ui/Auth/screens/{{pascalCase name}}'`,
+        template: `import {{pascalCase name}} from 'ui/{{pascalCase module}}/screens/{{pascalCase name}}'`,
       },
       {
         // Action type 'append' injects a template into an existing file
@@ -78,13 +86,13 @@ module.exports = plop => {
         path: 'src/services/navigation/Navigation.enums.ts',
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_SCREEN */`,
-        template: `{{constantCase name}} = '{{constantCase name}}',`,
+        template: `{{pascalCase module}}_{{constantCase name}} = '{{pascalCase module}}_{{constantCase name}}',`,
       },
       {
         // Add a new file
         type: 'add',
         // Path for the new file
-        path: 'src/ui/Auth/screens/{{pascalCase name}}/index.ts',
+        path: 'src/ui/{{pascalCase module}}/screens/{{pascalCase name}}/index.ts',
         // Handlebars template used to generate content of new file
         template: `export { default } from './{{pascalCase name}}Screen'`,
       },
@@ -92,7 +100,7 @@ module.exports = plop => {
         // Add a new file
         type: 'add',
         // Path for the new file
-        path: 'src/ui/Auth/screens/{{pascalCase name}}/{{pascalCase name}}Screen.tsx',
+        path: 'src/ui/{{pascalCase module}}/screens/{{pascalCase name}}/{{pascalCase name}}Screen.tsx',
         // Handlebars template used to generate content of new file
         templateFile: 'plop-templates/Screen.js.hbs',
       },
@@ -100,7 +108,7 @@ module.exports = plop => {
         // Add a new file
         type: 'add',
         // Path for the new file
-        path: 'src/ui/Auth/screens/{{pascalCase name}}/{{pascalCase name}}Screen.styles.ts',
+        path: 'src/ui/{{pascalCase module}}/screens/{{pascalCase name}}/{{pascalCase name}}Screen.styles.ts',
         // Handlebars template used to generate content of new file
         templateFile: 'plop-templates/Screen.styles.js.hbs',
       },

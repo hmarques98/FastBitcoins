@@ -10,6 +10,7 @@ import { LightTheme, DarkTheme } from '@theme/themes'
 import HomeScreen from 'ui/Auth/screens/Home'
 import AccountEmail from 'ui/Auth/screens/AccountEmail'
 /* PLOP_INJECT_SCREEN_IMPORT */
+import CountriesList from 'ui/Auth/screens/CountriesList'
 import NewAccount from 'ui/Auth/screens/NewAccount'
 
 import Header from './components/Header'
@@ -19,6 +20,7 @@ export type RootStackParamList = {
   [SCREENS.AUTH_HOME]: undefined
   [SCREENS.AUTH_ACCOUNT_EMAIL]: undefined
   [SCREENS.AUTH_NEW_ACCOUNT]: undefined
+  [SCREENS.AUTH_COUNTRIES_LIST]: undefined
 
   /* PLOP_INJECT_SCREEN_PARAMS */
 }
@@ -65,6 +67,14 @@ const Navigation = () => {
             component={NewAccount}
             options={{ title: 'Your new account' }}
           />
+
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name={SCREENS.AUTH_COUNTRIES_LIST}
+              component={CountriesList}
+              options={{ title: 'Your title' }}
+            />
+          </Stack.Group>
 
           {/* PLOP_INJECT_SCREEN */}
         </Stack.Group>

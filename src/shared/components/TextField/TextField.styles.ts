@@ -19,11 +19,16 @@ export default (theme: ExtendedTheme) => {
       borderColor: '#000',
       borderWidth: 1,
       borderRadius: 5,
+
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
     },
     textField: {
       color: colors.text,
       fontFamily: fonts.body,
       fontSize: 18,
+      flex: 1,
     },
   })
 }

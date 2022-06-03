@@ -1,13 +1,16 @@
 import { useTheme } from '@react-navigation/native'
 import React from 'react'
 import { Text, View, TextInput, TextInputProps } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import createStyle from './TextField.styles'
 
 type TextFieldProps = TextInputProps & {
   label?: string
+  icon?: JSX.Element
+  onPress?(): void
 }
 
-const TextField = ({ label, ...restProps }: TextFieldProps) => {
+const TextField = ({ label, icon, onPress, ...restProps }: TextFieldProps) => {
   const theme = useTheme()
   const styles = createStyle(theme)
 
@@ -18,17 +21,22 @@ const TextField = ({ label, ...restProps }: TextFieldProps) => {
           <Text style={styles.labelText}>{label}</Text>
         </View>
       )}
-      <View style={styles.textFieldContainer}>
+      <TouchableOpacity
+        style={styles.textFieldContainer}
+        onPress={onPress}
+        activeOpacity={typeof onPress === 'function' ? 0.3 : 1}
+      >
         <TextInput
-          {...restProps}
           autoCapitalize="none"
           textContentType="emailAddress"
           keyboardType="email-address"
           returnKeyType="go"
           enablesReturnKeyAutomatically
           style={styles.textField}
+          {...restProps}
         />
-      </View>
+        {icon}
+      </TouchableOpacity>
     </View>
   )
 }

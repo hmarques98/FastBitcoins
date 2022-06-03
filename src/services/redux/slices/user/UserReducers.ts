@@ -7,19 +7,22 @@ export interface InitialState {
 }
 
 const initialState: InitialState = {
-  userData: { email: '' },
+  userData: { email: '', country: '' },
 }
 
 const userReducer = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setEmail(state, action: PayloadAction<IUser>) {
+    setEmail(state, action: PayloadAction<Pick<IUser, 'email'>>) {
       state.userData.email = action.payload.email
+    },
+    setCountry(state, action: PayloadAction<Pick<IUser, 'country'>>) {
+      state.userData.country = action.payload.country
     },
   },
 })
 
-export const { setEmail } = userReducer.actions
+export const { setEmail, setCountry } = userReducer.actions
 
 export default userReducer.reducer
