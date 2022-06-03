@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native'
 export default (theme: ExtendedTheme) => {
   const { colors } = theme
   return StyleSheet.create({
-    container: { width: '100%' },
+    container: { width: '100%', marginBottom: 10 },
     labelContainer: { marginBottom: 8 },
     labelText: {
       color: colors.text,

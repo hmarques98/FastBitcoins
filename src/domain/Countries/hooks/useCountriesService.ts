@@ -1,14 +1,18 @@
+import { setState } from '@services/redux/slices/user/UserReducers'
+import { useAppDispatch, useAppSelector } from '@services/redux/Store'
 import {
   getCountries,
   getStatesByCountry as _getStatesByCountry,
 } from 'data/countries/services'
 import { GetCountries } from 'data/countries/services/models'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useQuery, useMutation } from 'react-query'
+
+const UNITED_STATES = 'United States'
 
 const useCountriesService = () => {
   const {
-    data,
+    data: countries,
     refetch,
     error: errorCountries,
     isLoading: isLoadingCountries,
@@ -19,34 +23,65 @@ const useCountriesService = () => {
     data: statesByCountry,
     error: errorStatesByCountry,
   } = useMutation(_getStatesByCountry)
+  const { country } = useAppSelector(state => state.user.userData)
+  const dispatch = useAppDispatch()
 
-  const countriesOrderedByName = useCallback(
-    () => data?.sort((a, b) => (a.name.common > b.name.common ? 0 : -1)),
-    [data],
+  const countriesOrderedByName = useMemo(
+    () => countries?.sort((a, b) => (a.name.common > b.name.common ? 0 : -1)),
+    [countries],
+  )
+
+  const isCountrySelectedUnitedStates = useMemo(
+    () => country === UNITED_STATES,
+    [country],
   )
 
   const filterCountriesByText = useCallback(
     (text: string) => {
-      if (!text) return data
-      return data
-        ? data.filter(item =>
+      if (!text) return countries
+      return countries
+        ? countries.filter(item =>
             item.name.common.toLowerCase().includes(text.toLowerCase()),
           )
         : ([] as GetCountries[])
     },
-    [data],
+    [countries],
+  )
+  const filterStatesByText = useCallback(
+    (text: string) => {
+      if (!text) return statesByCountry
+      return statesByCountry
+        ? statesByCountry.filter(item =>
+            item.name.toLowerCase().includes(text.toLowerCase()),
+          )
+        : []
+    },
+    [statesByCountry],
   )
 
+  const getStatesByCountry = useCallback(() => {
+    if (isCountrySelectedUnitedStates) {
+      mutate(country)
+    }
+    dispatch(setState({ state: '' }))
+  }, [country, dispatch, isCountrySelectedUnitedStates, mutate])
+
+  useEffect(() => {
+    getStatesByCountry()
+  }, [getStatesByCountry])
+
   return {
-    countries: countriesOrderedByName(),
+    countries: countriesOrderedByName,
     refetchCountries: refetch,
     errorCountries,
     filterCountriesByText,
     isLoadingCountries,
 
     statesByCountry,
-    getStatesByCountry: mutate,
     errorStatesByCountry,
+    filterStatesByText,
+
+    isCountrySelectedUnitedStates,
   }
 }
 

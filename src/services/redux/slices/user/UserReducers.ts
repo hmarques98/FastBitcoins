@@ -20,9 +20,12 @@ const userReducer = createSlice({
     setCountry(state, action: PayloadAction<Pick<IUser, 'country'>>) {
       state.userData.country = action.payload.country
     },
+    setState(state, action: PayloadAction<Pick<IUser, 'state'>>) {
+      state.userData.state = action.payload.state
+    },
   },
 })
 
-export const { setEmail, setCountry } = userReducer.actions
+export const { setEmail, setCountry, setState } = userReducer.actions
 
 export default userReducer.reducer
