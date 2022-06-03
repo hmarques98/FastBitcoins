@@ -1,4 +1,4 @@
-import { persistCombineReducers } from 'redux-persist'
+import { persistCombineReducers, PersistConfig } from 'redux-persist'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import userReducer, {
@@ -13,11 +13,14 @@ export type MainState = {
   user: UserStore
 }
 
-const persistConfig = {
+const persistConfig: PersistConfig<{
+  user: UserStore
+}> = {
   key: 'root',
   storage: AsyncStorage,
   timeout: undefined,
-  whitelist: ['user'],
+  whitelist: [],
+  // debug: __DEV__,
 }
 
 export const persistedRootReducer = persistCombineReducers(

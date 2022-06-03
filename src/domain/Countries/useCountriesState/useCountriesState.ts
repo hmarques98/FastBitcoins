@@ -1,4 +1,7 @@
-import { setCountry, setState } from '@services/redux/slices/user/UserReducers'
+import {
+  setCountry,
+  setCountryState,
+} from '@services/redux/slices/user/UserReducers'
 import { useAppDispatch, useAppSelector } from '@services/redux/Store'
 
 const useCountriesState = () => {
@@ -9,7 +12,7 @@ const useCountriesState = () => {
     dispatch(setCountry({ country: selectedCountry }))
   }
   const handleSelectedState = (selectedState: string) => {
-    dispatch(setState({ state: selectedState }))
+    dispatch(setCountryState({ state: selectedState }))
   }
 
   return {

@@ -11,7 +11,7 @@ import { SCREENS } from '@services/navigation/Navigation.enums'
 import TextField from '@shared-components/TextField'
 
 import createStyles from './AccountEmailScreen.styles'
-import useUserClientService from 'domain/User/hooks/useUserClientService'
+import useUserClientService from 'domain/User/useUserClientService'
 
 type NavigationProps = StackNavigationProp<
   RootStackParamList,

@@ -1,12 +1,13 @@
-import { setState } from '@services/redux/slices/user/UserReducers'
-import { useAppDispatch, useAppSelector } from '@services/redux/Store'
+import { useCallback, useEffect, useMemo } from 'react'
+import { useQuery, useMutation } from 'react-query'
+
 import {
   getCountries,
   getStatesByCountry as _getStatesByCountry,
 } from 'data/countries/services'
 import { GetCountries } from 'data/countries/services/models'
-import { useCallback, useEffect, useMemo } from 'react'
-import { useQuery, useMutation } from 'react-query'
+
+import useCountriesState from '../useCountriesState'
 
 const UNITED_STATES = 'United States'
 
@@ -23,8 +24,7 @@ const useCountriesService = () => {
     data: statesByCountry,
     error: errorStatesByCountry,
   } = useMutation(_getStatesByCountry)
-  const { country } = useAppSelector(state => state.user.userData)
-  const dispatch = useAppDispatch()
+  const { country } = useCountriesState()
 
   const countriesOrderedByName = useMemo(
     () => countries?.sort((a, b) => (a.name.common > b.name.common ? 0 : -1)),
@@ -63,8 +63,7 @@ const useCountriesService = () => {
     if (isCountrySelectedUnitedStates) {
       mutate(country)
     }
-    dispatch(setState({ state: '' }))
-  }, [country, dispatch, isCountrySelectedUnitedStates, mutate])
+  }, [country, isCountrySelectedUnitedStates, mutate])
 
   useEffect(() => {
     getStatesByCountry()

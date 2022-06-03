@@ -7,20 +7,21 @@ import {
 } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-import Button from '@shared-components/Button'
-
-import { RootStackParamList } from '@services/navigation'
-import { SCREENS } from '@services/navigation/Navigation.enums'
-import TextField from '@shared-components/TextField'
-
-import createStyles from './NewAccountScreen.styles'
 import BottomSheet, {
   BottomSheetFlatList,
   TouchableOpacity,
 } from '@gorhom/bottom-sheet'
-import useCountriesService from 'domain/Countries/hooks/useCountriesService'
-import useCountriesState from 'domain/Countries/hooks/useCountriesState'
+
+import Button from '@shared-components/Button'
+import TextField from '@shared-components/TextField'
+
+import { RootStackParamList } from '@services/navigation'
+import { SCREENS } from '@services/navigation/Navigation.enums'
+
+import useCountriesService from 'domain/Countries/useCountriesService'
+import useCountriesState from 'domain/Countries/useCountriesState'
+
+import createStyles from './NewAccountScreen.styles'
 
 type NavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -126,6 +127,7 @@ const NewAccountScreen = () => {
                     handleSelectedCountry(countryName)
                     sheetRefCountry.current?.close()
                     setSearchedCountry('')
+                    handleSelectedState('')
                   }}
                 >
                   <View style={styles.itemListContainer}>
