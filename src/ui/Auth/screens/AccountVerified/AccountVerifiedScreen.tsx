@@ -8,6 +8,8 @@ import VerifyAccount from './components/VerifyAccount'
 
 import CheckSuccess from 'assets/images/CheckSuccess.svg'
 import EmailPending from 'assets/images/EmailPending.svg'
+import useLoginService from 'domain/Auth/useLoginService'
+import useMonitorSession from 'domain/Auth/useMonitorSession'
 
 // type NavigationProps = StackNavigationProp<
 //   RootStackParamList,
@@ -19,10 +21,15 @@ const AccountVerifiedScreen = () => {
 
   const styles = useMemo(() => createStyles(theme), [theme])
 
-  const isTrue = false
+  const { data, isLoading } = useLoginService()
+  const { data: monitorResponse } = useMonitorSession(data?.session_key)
+
+  const isVerified = monitorResponse?.secret
+
+  if (isLoading) return <></>
   return (
     <View style={styles.container}>
-      {isTrue ? (
+      {isVerified ? (
         <VerifyAccount
           Icon={CheckSuccess}
           title="Email verified"
