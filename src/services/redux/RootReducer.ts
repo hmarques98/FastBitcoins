@@ -19,7 +19,7 @@ const persistConfig: PersistConfig<{
   key: 'root',
   storage: AsyncStorage,
   timeout: undefined,
-  whitelist: [],
+  whitelist: ['user'],
   // debug: __DEV__,
 }
 

@@ -86,7 +86,7 @@ module.exports = plop => {
         path: 'src/services/navigation/Navigation.enums.ts',
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_SCREEN */`,
-        template: `{{pascalCase module}}_{{constantCase name}} = '{{pascalCase module}}_{{constantCase name}}',`,
+        template: `{{constantCase module}}_{{constantCase name}} = '{{constantCase module}}_{{constantCase name}}',`,
       },
       {
         // Add a new file

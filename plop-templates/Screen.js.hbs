@@ -3,19 +3,19 @@ import { Keyboard, View, TouchableWithoutFeedback } from 'react-native'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
-import Button from '@shared-components/Button'
-
 import { validateEmail } from 'utils'
-import { RootStackParamList } from '@services/navigation'
-import { SCREENS } from '@services/navigation/Navigation.enums'
+import Button from '@shared-components/Button'
 import TextField from '@shared-components/TextField'
 
+import { RootStackParamList } from '@services/navigation'
+import { SCREENS } from '@services/navigation/Navigation.enums'
+import useUserClientService from 'domain/User/useUserClientService'
+
 import createStyles from './{{pascalCase name }}Screen.styles'
-import useUserClientService from 'domain/User/hooks/useUserClientService'
 
 type NavigationProps = StackNavigationProp<
   RootStackParamList,
-  SCREENS.AUTH_{{constantCase name}}
+  SCREENS.{{constantCase module}}_{{constantCase name}}
 >
 
 const {{pascalCase name }}Screen = () => {
@@ -40,10 +40,11 @@ const {{pascalCase name }}Screen = () => {
           label="Email"
           placeholder="Your email address"
         />
+
         <View style={styles.buttonContainer}>
           <Button
             title="Continue"
-            onPress={() => push(SCREENS.AUTH_HOME)}
+            onPress={() => push(SCREENS.{{constantCase module}}_HOME)}
             disabled={Boolean(!validateEmail(user.email))}
           />
         </View>

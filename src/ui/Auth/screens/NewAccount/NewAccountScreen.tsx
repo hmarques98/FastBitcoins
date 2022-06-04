@@ -93,7 +93,7 @@ const NewAccountScreen = () => {
         <View style={styles.buttonContainer}>
           <Button
             title="Continue"
-            onPress={() => push(SCREENS.AUTH_HOME)}
+            onPress={() => push(SCREENS.AUTH_ACCOUNT_VERIFIED)}
             disabled={!country}
           />
         </View>
@@ -119,12 +119,16 @@ const NewAccountScreen = () => {
             ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
             renderItem={({ item }) => {
               const countryName = item.name.common
+              const { cca2 } = item
               return (
                 <TouchableOpacity
                   style={styles.itemListButtonContainer}
                   key={countryName}
                   onPress={() => {
-                    handleSelectedCountry(countryName)
+                    handleSelectedCountry({
+                      selectedCountry: countryName,
+                      alphaCountryCode: cca2,
+                    })
                     sheetRefCountry.current?.close()
                     setSearchedCountry('')
                     handleSelectedState('')

@@ -1,5 +1,5 @@
 import { useTheme } from '@react-navigation/native'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Text, TouchableOpacityProps, TouchableOpacity } from 'react-native'
 import createStyle from './Button.styles'
 
@@ -10,7 +10,10 @@ type ButtonProps = {
 
 const Button = ({ onPress, title, disabled, ...restProps }: ButtonProps) => {
   const theme = useTheme()
-  const styles = createStyle(theme, { disabled: Boolean(disabled) })
+  const styles = useMemo(
+    () => createStyle(theme, { disabled: Boolean(disabled) }),
+    [disabled, theme],
+  )
 
   return (
     <TouchableOpacity

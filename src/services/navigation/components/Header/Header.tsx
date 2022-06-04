@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { theme } from '@theme/themes'
 import { Image, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -10,7 +10,7 @@ import createStyles from './Header.styles'
 const Header = ({ title }: { title: string }) => {
   const { top } = useSafeAreaInsets()
 
-  const styles = createStyles(theme, { marginTop: top })
+  const styles = useMemo(() => createStyles(theme, { marginTop: top }), [top])
 
   return (
     <View style={styles.container}>

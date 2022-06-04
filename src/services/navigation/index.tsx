@@ -10,7 +10,7 @@ import { LightTheme, DarkTheme } from '@theme/themes'
 import HomeScreen from 'ui/Auth/screens/Home'
 import AccountEmail from 'ui/Auth/screens/AccountEmail'
 /* PLOP_INJECT_SCREEN_IMPORT */
-import CountriesList from 'ui/Auth/screens/CountriesList'
+import AccountVerified from 'ui/Auth/screens/AccountVerified'
 import NewAccount from 'ui/Auth/screens/NewAccount'
 
 import Header from './components/Header'
@@ -20,9 +20,9 @@ export type RootStackParamList = {
   [SCREENS.AUTH_HOME]: undefined
   [SCREENS.AUTH_ACCOUNT_EMAIL]: undefined
   [SCREENS.AUTH_NEW_ACCOUNT]: undefined
-  [SCREENS.AUTH_COUNTRIES_LIST]: undefined
 
   /* PLOP_INJECT_SCREEN_PARAMS */
+  [SCREENS.AUTH_ACCOUNT_VERIFIED]: undefined
 }
 
 const Stack = createStackNavigator<RootStackParamList>()
@@ -51,6 +51,11 @@ const Navigation = () => {
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name={SCREENS.AUTH_HOME} component={HomeScreen} />
+        <Stack.Screen
+          name={SCREENS.AUTH_ACCOUNT_VERIFIED}
+          component={AccountVerified}
+          options={{ title: 'Your title' }}
+        />
         <Stack.Group
           screenOptions={{
             header: ({ options }) => <Header title={options.title!} />,
@@ -67,14 +72,6 @@ const Navigation = () => {
             component={NewAccount}
             options={{ title: 'Your new account' }}
           />
-
-          <Stack.Group screenOptions={{ presentation: 'modal' }}>
-            <Stack.Screen
-              name={SCREENS.AUTH_COUNTRIES_LIST}
-              component={CountriesList}
-              options={{ title: 'Your title' }}
-            />
-          </Stack.Group>
 
           {/* PLOP_INJECT_SCREEN */}
         </Stack.Group>

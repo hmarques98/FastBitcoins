@@ -8,8 +8,14 @@ const useCountriesState = () => {
   const { country, state } = useAppSelector(({ user }) => user.userData)
   const dispatch = useAppDispatch()
 
-  const handleSelectedCountry = (selectedCountry: string) => {
-    dispatch(setCountry({ country: selectedCountry }))
+  const handleSelectedCountry = ({
+    selectedCountry,
+    alphaCountryCode,
+  }: {
+    selectedCountry: string
+    alphaCountryCode: string
+  }) => {
+    dispatch(setCountry({ country: selectedCountry, alphaCountryCode }))
   }
   const handleSelectedState = (selectedState: string) => {
     dispatch(setCountryState({ state: selectedState }))

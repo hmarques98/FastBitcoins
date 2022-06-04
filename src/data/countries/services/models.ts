@@ -10,6 +10,7 @@ export interface GetCountries {
   }
   fifa: string
   flag: string
+  cca2: string
 }
 
 export interface GetStatesByCountry {
