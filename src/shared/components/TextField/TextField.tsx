@@ -1,7 +1,12 @@
 import { useTheme } from '@react-navigation/native'
 import React, { useMemo } from 'react'
-import { Text, View, TextInput, TextInputProps } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import {
+  Text,
+  View,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+} from 'react-native'
 import createStyle from './TextField.styles'
 
 type TextFieldProps = TextInputProps & {
@@ -31,6 +36,7 @@ const TextField = ({ label, icon, onPress, ...restProps }: TextFieldProps) => {
           textContentType="emailAddress"
           keyboardType="email-address"
           returnKeyType="go"
+          placeholderTextColor={theme.colors.gray}
           enablesReturnKeyAutomatically
           style={styles.textField}
           {...restProps}

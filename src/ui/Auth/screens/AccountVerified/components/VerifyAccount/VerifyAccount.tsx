@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { SvgProps } from 'react-native-svg'
 
 import createStyle from './VerifyAccount.styles'

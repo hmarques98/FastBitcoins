@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import { theme } from '@theme/themes'
-import { Image, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Image, Text, View, TouchableOpacity } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { navigationRef } from 'react-navigation-helpers'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'

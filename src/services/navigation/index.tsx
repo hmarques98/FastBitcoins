@@ -1,11 +1,11 @@
 import React from 'react'
-import { StatusBar, useColorScheme } from 'react-native'
+import { StatusBar } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { isReadyRef, navigationRef } from 'react-navigation-helpers'
 import { hide as hideSplashScreen } from 'react-native-bootsplash'
 
-import { LightTheme, DarkTheme } from '@theme/themes'
+import { LightTheme } from '@theme/themes'
 
 import HomeScreen from 'ui/Auth/screens/Home'
 import AccountEmail from 'ui/Auth/screens/AccountEmail'
@@ -28,9 +28,7 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>()
 
 const Navigation = () => {
-  const scheme = useColorScheme()
-  const isDarkMode = scheme === 'dark'
-  const navigationTheme = isDarkMode ? DarkTheme : LightTheme
+  const navigationTheme = LightTheme
 
   React.useEffect(() => {
     return () => {
