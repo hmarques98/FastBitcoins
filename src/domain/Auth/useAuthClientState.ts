@@ -1,10 +1,15 @@
-import { useAppSelector } from '@services/redux/Store'
-import { getStorageValueSessionKey } from 'data/auth/services'
-import { useEffect, useState } from 'react'
+import {
+  getStorageValueSessionKey,
+  getStorageValueUserSession,
+  setStorageValueSessionKey,
+} from 'data/auth/services'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useAuthContext } from './AuthContext'
 
 const useAuthClientState = () => {
-  const user = useAppSelector(state => state.user.userData)
   const [sessionKey, setSessionKey] = useState('')
+  const [isAuth, setIsAuth] = useState<boolean>()
+  const { isAuthenticated, setIsAuthenticated } = useAuthContext() || {}
 
   useEffect(() => {
     ;(async () => {
@@ -13,7 +18,41 @@ const useAuthClientState = () => {
     })()
   }, [])
 
-  return { ...user, sessionKey }
+  useEffect(() => {
+    ;(async () => {
+      const value = await getStorageValueUserSession()
+
+      setIsAuth(Boolean(value?.secret))
+    })()
+  }, [])
+
+  const authenticateSession = useCallback(
+    ({
+      expired,
+      secret,
+      email,
+    }: {
+      expired: boolean
+      secret: string
+      email: string
+    }) => {
+      setStorageValueSessionKey({
+        email,
+        expired,
+        secret,
+        sessionKey,
+      })
+      setIsAuthenticated?.(true)
+    },
+    [sessionKey, setIsAuthenticated],
+  )
+
+  const isUserAuthenticated = useMemo(
+    () => isAuthenticated || isAuth,
+    [isAuth, isAuthenticated],
+  )
+
+  return { sessionKey, isUserAuthenticated, authenticateSession }
 }
 
 export default useAuthClientState

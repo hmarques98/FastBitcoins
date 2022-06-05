@@ -1,5 +1,4 @@
 import React from 'react'
-import { StatusBar } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { isReadyRef, navigationRef } from 'react-navigation-helpers'
@@ -13,6 +12,8 @@ import AuthNavigator from './Stacks/Auth'
 /* PLOP_INJECT_NAVIGATOR_IMPORT */
 import { SCREENS } from './Navigation.enums'
 import ProfileNavigator from './Stacks/Profile'
+import useAuthClientState from 'domain/Auth/useAuthClientState'
+import Header from './components/Header'
 
 export type RootStackParamList = {
   [SCREENS.AUTH_STACK]: undefined
@@ -25,29 +26,45 @@ const Stack = createStackNavigator<RootStackParamList>()
 const Navigation = () => {
   const navigationTheme = LightTheme
 
+  const { isUserAuthenticated } = useAuthClientState()
+
   React.useEffect(() => {
     return () => {
       isReadyRef.current = false
     }
   }, [])
 
+  React.useEffect(() => {
+    if (typeof isUserAuthenticated !== 'undefined')
+      hideSplashScreen({ fade: true })
+  }, [isUserAuthenticated])
+
   return (
     <NavigationContainer
       ref={navigationRef}
       onReady={() => {
         isReadyRef.current = true
-
-        hideSplashScreen()
-        StatusBar.setBarStyle('light-content')
       }}
       theme={navigationTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={SCREENS.AUTH_STACK} component={AuthNavigator} />
-        <Stack.Screen
-          name={SCREENS.PROFILE_STACK}
-          component={ProfileNavigator}
-        />
+        {isUserAuthenticated ? (
+          <>
+            <Stack.Group
+              screenOptions={{
+                headerShown: true,
+                header: () => <Header title="You are logged" />,
+              }}
+            >
+              <Stack.Screen
+                name={SCREENS.PROFILE_STACK}
+                component={ProfileNavigator}
+              />
+            </Stack.Group>
+          </>
+        ) : (
+          <Stack.Screen name={SCREENS.AUTH_STACK} component={AuthNavigator} />
+        )}
         {/* PLOP_INJECT_NAVIGATOR */}
         {/* PLOP_INJECT_SCREEN */}
       </Stack.Navigator>

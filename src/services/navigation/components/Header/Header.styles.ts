@@ -18,6 +18,9 @@ export default (
       paddingHorizontal: 20,
     },
     image: { width: 20, height: 26 },
-    title: { fontFamily: fonts.subtitle, color: theme.colors.secondary },
+    title: {
+      fontFamily: fonts.subtitle,
+      color: theme.colors.secondary,
+    },
   })
 }

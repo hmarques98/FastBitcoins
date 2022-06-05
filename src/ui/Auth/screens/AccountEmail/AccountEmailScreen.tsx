@@ -1,5 +1,10 @@
 import React, { useMemo } from 'react'
-import { Keyboard, View, TouchableWithoutFeedback } from 'react-native'
+import {
+  Keyboard,
+  View,
+  TouchableWithoutFeedback,
+  StatusBar,
+} from 'react-native'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
@@ -24,10 +29,9 @@ const AccountEmailScreen = () => {
   const theme = useTheme()
 
   const styles = useMemo(() => createStyles(theme), [theme])
+  const { push } = useNavigation<NavigationProps>()
 
   const { setEmail, user } = useUserClientState()
-
-  const { push } = useNavigation<NavigationProps>()
 
   const { doLogin, isLoading } = useLoginService()
 
@@ -38,6 +42,7 @@ const AccountEmailScreen = () => {
       accessible={false}
     >
       <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
         <TextField
           value={user.email}
           onChangeText={setEmail}

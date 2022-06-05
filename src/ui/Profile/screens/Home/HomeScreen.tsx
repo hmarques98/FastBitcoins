@@ -44,7 +44,7 @@ const HomeScreen = () => {
         <View style={styles.buttonContainer}>
           <Button
             title="Continue"
-            onPress={() => push('')}
+            onPress={() => push(SCREENS.PROFILE_HOME)}
             disabled={Boolean(!validateEmail(user.email))}
           />
         </View>

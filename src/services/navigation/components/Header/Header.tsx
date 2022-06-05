@@ -13,9 +13,13 @@ const Header = ({ title }: { title: string }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigationRef.goBack()}>
-        <MaterialCommunityIcons name="arrow-left" size={30} />
-      </TouchableOpacity>
+      {navigationRef.canGoBack() ? (
+        <TouchableOpacity onPress={() => navigationRef.goBack()}>
+          <MaterialCommunityIcons name="arrow-left" size={30} />
+        </TouchableOpacity>
+      ) : (
+        <View style={{ width: 30 }} />
+      )}
 
       <Text style={styles.title}>{title}</Text>
 

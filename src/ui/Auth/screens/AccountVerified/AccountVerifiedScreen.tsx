@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { View } from 'react-native'
-import { useNavigation, useTheme } from '@react-navigation/native'
+import { useIsFocused, useNavigation, useTheme } from '@react-navigation/native'
 
 import createStyles from './AccountVerifiedScreen.styles'
 
@@ -13,12 +13,13 @@ import useMonitorSessionService from 'domain/Auth/useMonitorSessionService'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
 
-import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
+import { SCREENS as AuthScreens } from '@services/navigation/Stacks/Auth/Auth.enums'
 import useUserClientState from 'domain/User/useUserClientState'
+import { RootStackParamList } from '@services/navigation'
 
 type NavigationProps = StackNavigationProp<
-  AuthStackParamList,
-  SCREENS.AUTH_ACCOUNT_VERIFIED
+  AuthStackParamList & RootStackParamList,
+  AuthScreens.AUTH_ACCOUNT_VERIFIED
 >
 
 const THREE_SECONDS = 3000
@@ -26,10 +27,15 @@ const AccountVerifiedScreen = () => {
   const theme = useTheme()
   const navigation = useNavigation<NavigationProps>()
 
+  useIsFocused()
+
   const styles = useMemo(() => createStyles(theme), [theme])
 
-  const { sessionKey } = useAuthClientState()
-  const { resetUser } = useUserClientState()
+  const { sessionKey, authenticateSession } = useAuthClientState()
+  const {
+    resetUser,
+    user: { email },
+  } = useUserClientState()
 
   const {
     data: monitorResponse,
@@ -37,23 +43,29 @@ const AccountVerifiedScreen = () => {
     isFetching,
   } = useMonitorSessionService(sessionKey)
 
-  const isVerified = monitorResponse?.secret
+  const secretSessionVerified = monitorResponse?.secret
 
   useEffect(() => {
-    if (isVerified) {
+    if (secretSessionVerified) {
       setTimeout(() => {
-        navigation.reset({
-          routes: [{ name: SCREENS.AUTH_HOME, params: { isAuth: true } }],
-        })
+        const { expired, secret } = monitorResponse || {}
+        authenticateSession({ expired, secret, email })
       }, THREE_SECONDS)
     }
-  }, [isVerified, navigation])
+  }, [
+    authenticateSession,
+    monitorResponse,
+    navigation,
+    secretSessionVerified,
+    email,
+  ])
 
-  if (isLoading || isFetching || isVerified === undefined) return <></>
+  if (isLoading || isFetching || secretSessionVerified === undefined)
+    return <></>
 
   return (
     <View style={styles.container}>
-      {isVerified ? (
+      {secretSessionVerified ? (
         <VerifyAccount
           Icon={CheckSuccess}
           title="Email verified"

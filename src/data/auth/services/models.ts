@@ -35,3 +35,10 @@ export interface ISignUp {
   country: string
   countryState?: string
 }
+
+export interface IStorageUserSession {
+  sessionKey: string
+  expired: boolean
+  secret: string
+  email: string
+}

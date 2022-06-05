@@ -8,11 +8,13 @@ import {
   ISignUp,
   ISignUpRequest,
   ISignUpResponse,
+  IStorageUserSession,
   PlatformEnum,
 } from './models'
 import { getStorageValue, setStorageValue } from '@services/localStorage'
 
 const STORAGE_KEY_SIGNUP = '@STORAGE_KEY_SIGNUP'
+export const STORAGE_KEY_SESSION = '@STORAGE_KEY_SESSION'
 
 const platform = Platform.select({
   android: PlatformEnum.ANDROID,
@@ -35,6 +37,8 @@ const login = async (email: string) => {
     ['email_address']: email,
     platform,
   })
+
+  await setStorageValue(STORAGE_KEY_SIGNUP, response.data.session_key)
 
   return response.data
 }
@@ -60,4 +64,30 @@ const signUp = async ({ email, country, countryState }: ISignUp) => {
 const getStorageValueSessionKey = async () =>
   await getStorageValue(STORAGE_KEY_SIGNUP)
 
-export { getMonitorSession, login, signUp, getStorageValueSessionKey }
+const getStorageValueUserSession = async (): Promise<IStorageUserSession> => {
+  const value = await getStorageValue(STORAGE_KEY_SESSION)
+  return value && JSON.parse(value)
+}
+
+const setStorageValueSessionKey = async ({
+  email,
+  expired,
+  secret,
+  sessionKey,
+}: IStorageUserSession) => {
+  await setStorageValue(STORAGE_KEY_SESSION, {
+    email,
+    expired,
+    secret,
+    sessionKey,
+  })
+}
+
+export {
+  getMonitorSession,
+  login,
+  signUp,
+  getStorageValueSessionKey,
+  getStorageValueUserSession,
+  setStorageValueSessionKey,
+}

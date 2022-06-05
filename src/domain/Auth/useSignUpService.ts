@@ -1,14 +1,13 @@
 import { signUp as _signUp } from 'data/auth/services'
+import useUserClientState from 'domain/User/useUserClientState'
 import { useCallback } from 'react'
 import { useMutation } from 'react-query'
-import useAuthClientState from './useAuthClientState'
 
 const useSignUpService = () => {
   const {
-    email,
-    alphaCountryCode,
-    stateCode: countryStateCode,
-  } = useAuthClientState()
+    user: { email, alphaCountryCode, stateCode: countryStateCode },
+  } = useUserClientState()
+
   const { mutateAsync, data, isError, isLoading } = useMutation(_signUp)
 
   const signUp = useCallback(async () => {
