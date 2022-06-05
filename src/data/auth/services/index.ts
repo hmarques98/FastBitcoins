@@ -7,8 +7,12 @@ import {
   IMonitorSessionResponse,
   ISignUp,
   ISignUpRequest,
+  ISignUpResponse,
   PlatformEnum,
 } from './models'
+import { getStorageValue, setStorageValue } from '@services/localStorage'
+
+const STORAGE_KEY_SIGNUP = '@STORAGE_KEY_SIGNUP'
 
 const platform = Platform.select({
   android: PlatformEnum.ANDROID,
@@ -38,7 +42,7 @@ const login = async (email: string) => {
 const signUp = async ({ email, country, countryState }: ISignUp) => {
   const response = await instanceAPI.post<
     ISignUpRequest,
-    { data: ISignUpRequest }
+    { data: ISignUpResponse }
   >('/access/create', {
     ['email_address']: email,
 
@@ -48,7 +52,12 @@ const signUp = async ({ email, country, countryState }: ISignUp) => {
     state: countryState,
   })
 
+  await setStorageValue(STORAGE_KEY_SIGNUP, response.data.session_key)
+
   return response.data
 }
 
-export { getMonitorSession, login, signUp }
+const getStorageValueSessionKey = async () =>
+  await getStorageValue(STORAGE_KEY_SIGNUP)
+
+export { getMonitorSession, login, signUp, getStorageValueSessionKey }

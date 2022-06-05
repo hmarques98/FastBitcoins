@@ -19,7 +19,6 @@ export default (theme: ExtendedTheme) => {
       borderColor: '#000',
       borderWidth: 1,
       borderRadius: 5,
-
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -29,6 +28,8 @@ export default (theme: ExtendedTheme) => {
       fontFamily: fonts.body,
       fontSize: 18,
       flex: 1,
+      width: '100%',
+      height: '100%',
     },
   })
 }

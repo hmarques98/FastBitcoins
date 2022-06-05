@@ -1,12 +1,7 @@
 import { useTheme } from '@react-navigation/native'
 import React, { useMemo } from 'react'
-import {
-  Text,
-  View,
-  TextInput,
-  TextInputProps,
-  TouchableOpacity,
-} from 'react-native'
+import { Text, View, TextInput, TextInputProps } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import createStyle from './TextField.styles'
 
 type TextFieldProps = TextInputProps & {

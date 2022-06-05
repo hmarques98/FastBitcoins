@@ -1,9 +1,12 @@
 import { useCallback } from 'react'
 
 import { useAppDispatch, useAppSelector } from '@services/redux/Store'
-import { setEmail as _setEmail } from '@services/redux/slices/user/UserReducers'
+import {
+  setEmail as _setEmail,
+  resetUser as _resetUser,
+} from '@services/redux/slices/user/UserReducers'
 
-const useUserClientService = () => {
+const useUserClientState = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.user.userData)
 
@@ -14,10 +17,14 @@ const useUserClientService = () => {
     [dispatch],
   )
 
+  const resetUser = useCallback(() => {
+    dispatch(_resetUser())
+  }, [dispatch])
   return {
     setEmail,
     user,
+    resetUser,
   }
 }
 
-export default useUserClientService
+export default useUserClientState

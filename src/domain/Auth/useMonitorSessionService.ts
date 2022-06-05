@@ -1,7 +1,7 @@
 import { getMonitorSession } from 'data/auth/services'
 import { useQuery } from 'react-query'
 
-const useMonitorSession = (sessionKey?: string) => {
+const useMonitorSessionService = (sessionKey: string) => {
   const query = useQuery(
     ['monitorSession', sessionKey],
     () => getMonitorSession(sessionKey),
@@ -16,4 +16,4 @@ const useMonitorSession = (sessionKey?: string) => {
   return query
 }
 
-export default useMonitorSession
+export default useMonitorSessionService

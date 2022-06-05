@@ -7,7 +7,7 @@ import {
 } from 'data/countries/services'
 import { GetCountries } from 'data/countries/services/models'
 
-import useCountriesState from '../useCountriesState'
+import useCountriesClientState from '../useCountriesClientState'
 
 const UNITED_STATES = 'United States'
 
@@ -24,7 +24,7 @@ const useCountriesService = () => {
     data: statesByCountry,
     error: errorStatesByCountry,
   } = useMutation(_getStatesByCountry)
-  const { country } = useCountriesState()
+  const { country } = useCountriesClientState()
 
   const countriesOrderedByName = useMemo(
     () => countries?.sort((a, b) => (a.name.common > b.name.common ? 0 : -1)),

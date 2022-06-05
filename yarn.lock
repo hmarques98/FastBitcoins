@@ -5155,7 +5155,7 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
-flatted@^3.1.0:
+flatted@^3.1.0, flatted@^3.2.4:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.5.tgz#76c8584f4fc843db64702a6bd04ab7a8bd666da3"
   integrity sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==
@@ -8868,32 +8868,24 @@ rc@^1.0.1, rc@^1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-devtools-core@4.24.7:
-  version "4.24.7"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.24.7.tgz#43df22e6d244ed8286fd3ff16a80813998fe82a0"
-  integrity sha512-OFB1cp8bsh5Kc6oOJ3ZzH++zMBtydwD53yBYa50FKEGyOOdgdbJ4VsCsZhN/6F5T4gJfrZraU6EKda8P+tMLtg==
+react-devtools-core@4.13.0, react-devtools-core@^4.23.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.0.tgz#fa80ee03b1a975c1d9898e24de841e45a4b22d30"
+  integrity sha512-KR+0pLw8wTjOVr+9AECe5ctmycaAjbmxN3bbdB0vmlwm0JkxNnKMxDzanf+4V8IuPBQWgm8qdWpbSOqhu1l14g==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools-core@^4.23.0:
-  version "4.24.6"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.24.6.tgz#3262114f483465179c97a49b7ada845048f4f97e"
-  integrity sha512-+6y6JAtAo1NUUxaCwCYTb13ViBpc7RjNTlj1HZRlDJmi7UYToj5+BNn8Duzz2YizzAzmRUWZkRM7OtqxnN6TnA==
-  dependencies:
-    shell-quote "^1.6.1"
-    ws "^7"
-
-react-devtools@^4.22.0:
-  version "4.24.7"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.24.7.tgz#b96a45fc28987eb454e928e13538c390eef8dc88"
-  integrity sha512-f3eI+Un4Y9nXSDHm866wo0Fk39gRdUr65wTiP2VkFiOosAWEp/Q91EsXbzJQ9LpDZ3g+Kn4CjXKWIFQk4Um6Tw==
+react-devtools@4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.13.0.tgz#f0c8d920d7ac87e8ee8d0742bd8a8e3643e58ef4"
+  integrity sha512-Ti7hEiIjbZvhpfEokn3ZqKvj0pAlOmaRyRrQhKqY9msYwbA4WmKtDCSDQUN8fOOPIOykvZ0t1gDrq+1PsiYEXQ==
   dependencies:
     cross-spawn "^5.0.1"
     electron "^11.1.0"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.24.7"
+    react-devtools-core "4.13.0"
     update-notifier "^2.1.0"
 
 react-error-boundary@^3.1.0:
@@ -9079,6 +9071,13 @@ react-navigation-helpers@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-navigation-helpers/-/react-navigation-helpers-2.1.0.tgz#712d393a87b3dddf0cfb347a8109291b5e999157"
   integrity sha512-Lu1VYEwMj+Z2j/qzqNK2XVrMI1XUI6YULh7U0KGBbvZOf3ZA6Hfja8K20pcP/eVoS2pNjBogte6UAGtNGDbwzQ==
+
+react-query-native-devtools@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-query-native-devtools/-/react-query-native-devtools-4.0.0.tgz#97d484d024503d484652f6e64a07c188f99ae702"
+  integrity sha512-TKwYO0tcw744c2aI1AGL2zoLycx3mr6Apl/3p9EIxh204kWGBpF7OhPQY7OKSdPvgw1jG6wlKzfAj3asgCSZGg==
+  dependencies:
+    flatted "^3.2.4"
 
 react-query@^3.39.1:
   version "3.39.1"
@@ -9506,6 +9505,11 @@ rimraf@~2.6.2:
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   dependencies:
     glob "^7.1.3"
+
+rn-flipper-async-storage-advanced@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/rn-flipper-async-storage-advanced/-/rn-flipper-async-storage-advanced-1.0.4.tgz#ca3d0c315a75f379fef3771cc6ee3bef2d774265"
+  integrity sha512-ixA6LJOxz+spdeJ8a2x6KimIiDCuKDky0ic5VaOHWIPSUcGmtmmZKJ98TQ0Uj3Cx/sM9K5VaUyjt2Gt1lrZNiw==
 
 roarr@^2.15.3:
   version "2.15.4"

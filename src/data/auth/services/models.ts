@@ -26,6 +26,9 @@ export interface ISignUpRequest {
   country: string
   state?: string
 }
+export interface ISignUpResponse {
+  session_key: string
+}
 
 export interface ISignUp {
   email: string

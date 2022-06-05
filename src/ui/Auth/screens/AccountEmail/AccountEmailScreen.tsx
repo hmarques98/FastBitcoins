@@ -11,7 +11,8 @@ import { SCREENS } from '@services/navigation/Navigation.enums'
 import TextField from '@shared-components/TextField'
 
 import createStyles from './AccountEmailScreen.styles'
-import useUserClientService from 'domain/User/useUserClientService'
+import useUserClientState from 'domain/User/useUserClientState'
+import useLoginService from 'domain/Auth/useLoginService'
 
 type NavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -23,9 +24,11 @@ const AccountEmailScreen = () => {
 
   const styles = useMemo(() => createStyles(theme), [theme])
 
-  const { setEmail, user } = useUserClientService()
+  const { setEmail, user } = useUserClientState()
 
   const { push } = useNavigation<NavigationProps>()
+
+  const { doLogin, isLoading } = useLoginService()
 
   return (
     <TouchableWithoutFeedback
@@ -43,8 +46,14 @@ const AccountEmailScreen = () => {
         <View style={styles.buttonContainer}>
           <Button
             title="Continue"
-            onPress={() => push(SCREENS.AUTH_NEW_ACCOUNT)}
-            disabled={Boolean(!validateEmail(user.email))}
+            onPress={async () => {
+              const response = await doLogin(user.email)
+
+              if (response.session_key)
+                return push(SCREENS.AUTH_ACCOUNT_VERIFIED)
+              push(SCREENS.AUTH_NEW_ACCOUNT)
+            }}
+            disabled={Boolean(!validateEmail(user.email)) || isLoading}
           />
         </View>
       </View>

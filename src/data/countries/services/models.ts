@@ -14,5 +14,5 @@ export interface GetCountries {
 }
 
 export interface GetStatesByCountry {
-  data: { states: [{ name: string }] }
+  data: { states: [{ name: string; state_code: string }] }
 }

@@ -9,7 +9,7 @@ import TextField from '@shared-components/TextField'
 
 import { RootStackParamList } from '@services/navigation'
 import { SCREENS } from '@services/navigation/Navigation.enums'
-import useUserClientService from 'domain/User/useUserClientService'
+import useUserClientState from 'domain/User/useUserClientState'
 
 import createStyles from './{{pascalCase name }}Screen.styles'
 
@@ -23,7 +23,7 @@ const {{pascalCase name }}Screen = () => {
 
   const styles = useMemo(() => createStyles(theme), [theme])
 
-  const { setEmail, user } = useUserClientService()
+  const { setEmail, user } = useUserClientState()
 
   const { push } = useNavigation<NavigationProps>()
 

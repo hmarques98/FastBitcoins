@@ -19,9 +19,10 @@ import { RootStackParamList } from '@services/navigation'
 import { SCREENS } from '@services/navigation/Navigation.enums'
 
 import useCountriesService from 'domain/Countries/useCountriesService'
-import useCountriesState from 'domain/Countries/useCountriesState'
+import useCountriesClientState from 'domain/Countries/useCountriesClientState'
 
 import createStyles from './NewAccountScreen.styles'
+import useSignUpService from 'domain/Auth/useSignUpService'
 
 type NavigationProps = StackNavigationProp<
   RootStackParamList,
@@ -45,8 +46,15 @@ const NewAccountScreen = () => {
     filterStatesByText,
     isCountrySelectedUnitedStates,
   } = useCountriesService()
-  const { country, handleSelectedCountry, handleSelectedState, state } =
-    useCountriesState()
+  const {
+    country,
+    handleSelectedCountry,
+    handleSelectedState,
+    state,
+    resetCountryState,
+  } = useCountriesClientState()
+
+  const { signUp, isLoading } = useSignUpService()
 
   const [searchedCountry, setSearchedCountry] = useState('')
   const [searchedState, setSearchedState] = useState('')
@@ -71,7 +79,7 @@ const NewAccountScreen = () => {
           <TextField
             value={country}
             onPress={() => sheetRefCountry.current?.snapToIndex(0)}
-            label="What country do you live in?"
+            label="What country do you live in? *"
             placeholder="Select country"
             editable={false}
             numberOfLines={1}
@@ -81,7 +89,7 @@ const NewAccountScreen = () => {
             <TextField
               value={state}
               onPress={() => sheetRefState.current?.snapToIndex(0)}
-              label="Which state do you live in?"
+              label="Which state do you live in? *"
               placeholder="Select state"
               editable={false}
               numberOfLines={1}
@@ -93,8 +101,13 @@ const NewAccountScreen = () => {
         <View style={styles.buttonContainer}>
           <Button
             title="Continue"
-            onPress={() => push(SCREENS.AUTH_ACCOUNT_VERIFIED)}
-            disabled={!country}
+            onPress={async () => {
+              await signUp()
+              push(SCREENS.AUTH_ACCOUNT_VERIFIED)
+            }}
+            disabled={
+              (!country && isCountrySelectedUnitedStates && !state) || isLoading
+            }
           />
         </View>
 
@@ -107,6 +120,7 @@ const NewAccountScreen = () => {
           style={styles.bottomSheet}
         >
           <TextField
+            pointerEvents="auto"
             placeholder="Search"
             onChangeText={setSearchedCountry}
             value={searchedCountry}
@@ -131,7 +145,7 @@ const NewAccountScreen = () => {
                     })
                     sheetRefCountry.current?.close()
                     setSearchedCountry('')
-                    handleSelectedState('')
+                    resetCountryState()
                   }}
                 >
                   <View style={styles.itemListContainer}>
@@ -167,19 +181,22 @@ const NewAccountScreen = () => {
             style={{ marginVertical: 32 }}
             ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
             renderItem={({ item }) => {
-              const countryName = item.name
+              const { name, state_code } = item
               return (
                 <TouchableOpacity
                   style={styles.itemListButtonContainer}
-                  key={countryName}
+                  key={name}
                   onPress={() => {
-                    handleSelectedState(item.name)
+                    handleSelectedState({
+                      selectedState: name,
+                      stateCode: state_code,
+                    })
                     sheetRefState.current?.close()
                     setSearchedState('')
                   }}
                 >
                   <Text numberOfLines={1} style={styles.itemListText}>
-                    {countryName}
+                    {name}
                   </Text>
                 </TouchableOpacity>
               )

@@ -7,7 +7,13 @@ export interface InitialState {
 }
 
 const initialState: InitialState = {
-  userData: { email: '', country: '', alphaCountryCode: '' },
+  userData: {
+    email: '',
+    country: '',
+    alphaCountryCode: '',
+    state: '',
+    stateCode: '',
+  },
 }
 
 const userReducer = createSlice({
@@ -24,12 +30,20 @@ const userReducer = createSlice({
       state.userData.country = action.payload.country
       state.userData.alphaCountryCode = action.payload.alphaCountryCode
     },
-    setCountryState(state, action: PayloadAction<Pick<IUser, 'state'>>) {
+    setCountryState(
+      state,
+      action: PayloadAction<Pick<IUser, 'state' | 'stateCode'>>,
+    ) {
       state.userData.state = action.payload.state
+      state.userData.stateCode = action.payload.stateCode
+    },
+    resetUser(state) {
+      state.userData = initialState as unknown as IUser
     },
   },
 })
 
-export const { setEmail, setCountry, setCountryState } = userReducer.actions
+export const { setEmail, setCountry, setCountryState, resetUser } =
+  userReducer.actions
 
 export default userReducer.reducer

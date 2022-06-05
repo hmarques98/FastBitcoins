@@ -1,17 +1,14 @@
 import { login } from 'data/auth/services'
-import { useEffect } from 'react'
 import { useMutation } from 'react-query'
-import useAuthClientState from './useAuthClientState'
 
 const useLoginService = () => {
-  const { email } = useAuthClientState()
   const { mutateAsync, data, isError, isLoading } = useMutation(login)
+  const doLogin = async (email: string) => {
+    const response = await mutateAsync(email)
+    return response
+  }
 
-  useEffect(() => {
-    mutateAsync(email)
-  }, [email, mutateAsync])
-
-  return { data, isError, isLoading }
+  return { data, isError, isLoading, doLogin }
 }
 
 export default useLoginService

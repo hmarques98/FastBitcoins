@@ -82,6 +82,12 @@
     "consistent-return": "off",
     "no-param-reassign": "off",
     "semi": "off",
+    "max-len": ["error", 120],
+    "jest/no-identical-title": "error",
+    "jest/valid-expect": "error",
+    "camelcase": "off",
+    "prefer-destructuring": "error",
+    "no-nested-ternary": "error",
 
     // TypeScript
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -155,13 +161,6 @@
     "import/default": "off",
     "import/no-named-as-default": "off",
     "import/no-unused-modules": "off",
-    "import/no-deprecated": "off",
-
-    "max-len": ["error", 120],
-    "jest/no-identical-title": "error",
-    "jest/valid-expect": "error",
-    "camelcase": "error",
-    "prefer-destructuring": "error",
-    "no-nested-ternary": "error"
+    "import/no-deprecated": "off"
   }
 }

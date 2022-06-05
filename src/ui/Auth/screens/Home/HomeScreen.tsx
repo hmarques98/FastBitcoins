@@ -14,10 +14,10 @@ type NavigationProps = StackNavigationProp<
   RootStackParamList,
   SCREENS.AUTH_HOME
 >
+
 const HomeScreen = () => {
   const theme = useTheme()
   const { push } = useNavigation<NavigationProps>()
-
   const styles = useMemo(() => createStyles(theme), [theme])
 
   return (

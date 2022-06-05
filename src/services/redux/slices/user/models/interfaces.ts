@@ -3,4 +3,5 @@ export interface IUser {
   country: string
   alphaCountryCode: string
   state?: string
+  stateCode?: string
 }
