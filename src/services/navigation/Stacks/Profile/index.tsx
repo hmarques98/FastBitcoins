@@ -1,18 +1,23 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { SCREENS } from '@services/navigation/Navigation.enums'
-import HomeScreen from 'ui/Auth/screens/Home'
+import HomeScreen from 'ui/Profile/screens/Home'
+/* PLOP_INJECT_SCREEN_IMPORT */
 
-export type AuthStackParamList = {
-  [SCREENS.AUTH_HOME]: undefined
+import { SCREENS } from './Profile.enums'
+
+export type ProfileStackParamList = {
+  [SCREENS.PROFILE_HOME]: undefined
+  /* PLOP_INJECT_SCREEN_PARAMS */
 }
-const Stack = createStackNavigator<AuthStackParamList>()
+const Stack = createStackNavigator<ProfileStackParamList>()
 
 const ProfileNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={SCREENS.AUTH_HOME} component={HomeScreen} />
+      <Stack.Screen name={SCREENS.PROFILE_HOME} component={HomeScreen} />
+
+      {/* PLOP_INJECT_SCREEN */}
     </Stack.Navigator>
   )
 }

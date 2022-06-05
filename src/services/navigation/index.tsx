@@ -10,6 +10,8 @@ import { LightTheme } from '@theme/themes'
 /* PLOP_INJECT_SCREEN_IMPORT */
 
 import AuthNavigator from './Stacks/Auth'
+/* PLOP_INJECT_NAVIGATOR_IMPORT */
+import ProfileNavigator from './Stacks/Profile'
 
 export type RootStackParamList = {
   /* PLOP_INJECT_SCREEN_PARAMS */
@@ -38,9 +40,11 @@ const Navigation = () => {
       theme={navigationTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <AuthNavigator />
         {/* PLOP_INJECT_SCREEN */}
       </Stack.Navigator>
+      <AuthNavigator />
+      <ProfileNavigator />
+      {/* PLOP_INJECT_NAVIGATOR */}
     </NavigationContainer>
   )
 }

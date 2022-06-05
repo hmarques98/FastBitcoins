@@ -1,0 +1,25 @@
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+
+import HomeScreen from 'ui/{{pascalCase stack}}/screens/Home'
+/* PLOP_INJECT_SCREEN_IMPORT */
+
+import { SCREENS } from './{{pascalCase stack}}.enums'
+
+export type {{pascalCase stack}}StackParamList = {
+  [SCREENS.{{constantCase stack}}_HOME]: undefined
+  /* PLOP_INJECT_SCREEN_PARAMS */
+}
+const Stack = createStackNavigator<{{pascalCase stack}}StackParamList>()
+
+const {{pascalCase stack}}Navigator = () => {
+  return (
+    <Stack.Navigator screenOptions={ { headerShown: false } }>
+      <Stack.Screen name={SCREENS.{{constantCase stack}}_HOME} component={HomeScreen} />
+
+      {/* PLOP_INJECT_SCREEN */}
+    </Stack.Navigator>
+  )
+}
+
+export default {{pascalCase stack}}Navigator
