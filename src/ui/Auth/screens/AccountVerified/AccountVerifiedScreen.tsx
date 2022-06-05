@@ -11,12 +11,13 @@ import EmailPending from 'assets/images/EmailPending.svg'
 import useAuthClientState from 'domain/Auth/useAuthClientState'
 import useMonitorSessionService from 'domain/Auth/useMonitorSessionService'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '@services/navigation'
-import { SCREENS } from '@services/navigation/Navigation.enums'
+import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
+
+import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
 import useUserClientState from 'domain/User/useUserClientState'
 
 type NavigationProps = StackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   SCREENS.AUTH_ACCOUNT_VERIFIED
 >
 

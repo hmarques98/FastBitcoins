@@ -7,7 +7,7 @@ import {
 } from 'data/countries/services'
 import { GetCountries } from 'data/countries/services/models'
 
-import useCountriesClientState from '../useCountriesClientState'
+import useCountriesClientState from './useCountriesClientState'
 
 const UNITED_STATES = 'United States'
 

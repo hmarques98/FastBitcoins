@@ -179,7 +179,7 @@ module.exports = plop => {
         path: 'src/services/navigation/index.tsx',
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_NAVIGATOR */`,
-        template: `<{{pascalCase stack}}Navigator />`,
+        templateFile: 'plop-templates/Stack.navigation.js.hbs',
       },
       {
         // Action type 'append' injects a template into an existing file
@@ -188,6 +188,22 @@ module.exports = plop => {
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_NAVIGATOR_IMPORT */`,
         template: `import {{pascalCase stack}}Navigator from './Stacks/{{pascalCase stack}}'`,
+      },
+      {
+        // Action type 'append' injects a template into an existing file
+        type: 'append',
+        path: 'src/services/navigation/index.tsx',
+        // Pattern tells plop where in the file to inject the template
+        pattern: `/* PLOP_INJECT_NAVIGATOR_PARAMS */`,
+        template: `[SCREENS.{{constantCase stack}}_STACK]: undefined`,
+      },
+      {
+        // Action type 'append' injects a template into an existing file
+        type: 'append',
+        path: 'src/services/navigation/Navigation.enums.ts',
+        // Pattern tells plop where in the file to inject the template
+        pattern: `/* PLOP_INJECT_SCREEN */`,
+        template: `{{constantCase stack}}_STACK = '{{constantCase stack}}_STACK',`,
       },
     ],
   })

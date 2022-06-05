@@ -6,8 +6,9 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import Button from '@shared-components/Button'
 
 import { validateEmail } from 'utils'
-import { RootStackParamList } from '@services/navigation'
-import { SCREENS } from '@services/navigation/Navigation.enums'
+import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
+
+import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
 import TextField from '@shared-components/TextField'
 
 import createStyles from './AccountEmailScreen.styles'
@@ -15,7 +16,7 @@ import useUserClientState from 'domain/User/useUserClientState'
 import useLoginService from 'domain/Auth/useLoginService'
 
 type NavigationProps = StackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   SCREENS.AUTH_ACCOUNT_EMAIL
 >
 

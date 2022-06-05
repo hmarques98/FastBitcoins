@@ -4,14 +4,14 @@ import { useNavigation, useTheme } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { RootStackParamList } from '@services/navigation'
+import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
+import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
 import Button from '@shared-components/Button'
-import { SCREENS } from '@services/navigation/Navigation.enums'
 
 import createStyles from './HomeScreen.style'
 
 type NavigationProps = StackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   SCREENS.AUTH_HOME
 >
 

@@ -15,8 +15,9 @@ import BottomSheet, {
 import Button from '@shared-components/Button'
 import TextField from '@shared-components/TextField'
 
-import { RootStackParamList } from '@services/navigation'
-import { SCREENS } from '@services/navigation/Navigation.enums'
+import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
+
+import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
 
 import useCountriesService from 'domain/Countries/useCountriesService'
 import useCountriesClientState from 'domain/Countries/useCountriesClientState'
@@ -25,7 +26,7 @@ import createStyles from './NewAccountScreen.styles'
 import useSignUpService from 'domain/Auth/useSignUpService'
 
 type NavigationProps = StackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   SCREENS.AUTH_NEW_ACCOUNT
 >
 

@@ -7,14 +7,15 @@ import { validateEmail } from 'utils'
 import Button from '@shared-components/Button'
 import TextField from '@shared-components/TextField'
 
-import { RootStackParamList } from '@services/navigation'
-import { SCREENS } from '@services/navigation/Navigation.enums'
+import { {{pascalCase name}}StackParamList } from '@services/navigation/Stacks/{{pascalCase name}}'
+import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
+
 import useUserClientState from 'domain/User/useUserClientState'
 
 import createStyles from './{{pascalCase name }}Screen.styles'
 
 type NavigationProps = StackNavigationProp<
-  RootStackParamList,
+  {{pascalCase name}}StackParamList,
   SCREENS.{{constantCase module}}_{{constantCase name}}
 >
 
