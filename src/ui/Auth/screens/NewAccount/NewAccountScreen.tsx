@@ -60,6 +60,8 @@ const NewAccountScreen = () => {
   const [searchedCountry, setSearchedCountry] = useState('')
   const [searchedState, setSearchedState] = useState('')
 
+  console.log({ country, isCountrySelectedUnitedStates, state })
+
   if (isLoadingCountries) return <></>
 
   return (
@@ -107,7 +109,7 @@ const NewAccountScreen = () => {
               push(SCREENS.AUTH_ACCOUNT_VERIFIED)
             }}
             disabled={
-              (!country && isCountrySelectedUnitedStates && !state) || isLoading
+              !country || (isCountrySelectedUnitedStates && !state) || isLoading
             }
           />
         </View>

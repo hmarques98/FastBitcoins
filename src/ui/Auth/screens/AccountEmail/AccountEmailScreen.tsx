@@ -4,6 +4,7 @@ import {
   View,
   TouchableWithoutFeedback,
   StatusBar,
+  useColorScheme,
 } from 'react-native'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -27,6 +28,9 @@ type NavigationProps = StackNavigationProp<
 
 const AccountEmailScreen = () => {
   const theme = useTheme()
+  const scheme = useColorScheme()
+  const isDark = scheme === 'dark'
+  console.log({ isDark })
 
   const styles = useMemo(() => createStyles(theme), [theme])
   const { push } = useNavigation<NavigationProps>()
@@ -42,7 +46,7 @@ const AccountEmailScreen = () => {
       accessible={false}
     >
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
         <TextField
           value={user.email}
           onChangeText={setEmail}

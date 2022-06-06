@@ -1,55 +1,25 @@
 import React, { useMemo } from 'react'
-import { Keyboard, View, TouchableWithoutFeedback } from 'react-native'
-import { useNavigation, useTheme } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
-
-import { validateEmail } from 'utils'
-import Button from '@shared-components/Button'
-import TextField from '@shared-components/TextField'
-
-import { SCREENS } from '@services/navigation/Stacks/Profile/Profile.enums'
-import { ProfileStackParamList } from '@services/navigation/Stacks/Profile'
-import useUserClientState from 'domain/User/useUserClientState'
+import { StatusBar, Text, View } from 'react-native'
+import { useTheme } from '@react-navigation/native'
 
 import createStyles from './HomeScreen.styles'
-
-type NavigationProps = StackNavigationProp<
-  ProfileStackParamList,
-  SCREENS.PROFILE_HOME
->
+import { SafeAreaView } from 'react-native-safe-area-context'
+import CheckSuccess from 'assets/images/CheckSuccess.svg'
 
 const HomeScreen = () => {
   const theme = useTheme()
 
   const styles = useMemo(() => createStyles(theme), [theme])
 
-  const { setEmail, user } = useUserClientState()
-
-  const { push } = useNavigation<NavigationProps>()
-
   return (
-    <TouchableWithoutFeedback
-      style={styles.touchableContainer}
-      onPress={Keyboard.dismiss}
-      accessible={false}
-    >
-      <View style={styles.container}>
-        <TextField
-          value={user.email}
-          onChangeText={setEmail}
-          label="Email"
-          placeholder="Your email address"
-        />
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
 
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Continue"
-            onPress={() => push(SCREENS.PROFILE_HOME)}
-            disabled={Boolean(!validateEmail(user.email))}
-          />
-        </View>
+      <CheckSuccess />
+      <View style={styles.languageContainer}>
+        <Text style={styles.titleText}>Welcome to</Text>
       </View>
-    </TouchableWithoutFeedback>
+    </SafeAreaView>
   )
 }
 export default HomeScreen

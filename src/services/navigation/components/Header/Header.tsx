@@ -15,7 +15,11 @@ const Header = ({ title }: { title: string }) => {
     <View style={styles.container}>
       {navigationRef.canGoBack() ? (
         <TouchableOpacity onPress={() => navigationRef.goBack()}>
-          <MaterialCommunityIcons name="arrow-left" size={30} />
+          <MaterialCommunityIcons
+            name="arrow-left"
+            size={30}
+            color={theme.colors.secondary}
+          />
         </TouchableOpacity>
       ) : (
         <View style={{ width: 30 }} />

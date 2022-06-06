@@ -13,7 +13,6 @@ import AuthNavigator from './Stacks/Auth'
 import { SCREENS } from './Navigation.enums'
 import ProfileNavigator from './Stacks/Profile'
 import useAuthClientState from 'domain/Auth/useAuthClientState'
-import Header from './components/Header'
 
 export type RootStackParamList = {
   [SCREENS.AUTH_STACK]: undefined
@@ -48,14 +47,9 @@ const Navigation = () => {
       theme={navigationTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {isUserAuthenticated ? (
+        {true ? (
           <>
-            <Stack.Group
-              screenOptions={{
-                headerShown: true,
-                header: () => <Header title="You are logged" />,
-              }}
-            >
+            <Stack.Group>
               <Stack.Screen
                 name={SCREENS.PROFILE_STACK}
                 component={ProfileNavigator}

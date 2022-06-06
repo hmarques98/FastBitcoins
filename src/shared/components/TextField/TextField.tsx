@@ -1,7 +1,6 @@
 import { useTheme } from '@react-navigation/native'
 import React, { useMemo } from 'react'
-import { Text, View, TextInput, TextInputProps } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Text, View, TextInput, TextInputProps, Pressable } from 'react-native'
 import createStyle from './TextField.styles'
 
 type TextFieldProps = TextInputProps & {
@@ -21,12 +20,9 @@ const TextField = ({ label, icon, onPress, ...restProps }: TextFieldProps) => {
           <Text style={styles.labelText}>{label}</Text>
         </View>
       )}
-      <TouchableOpacity
-        style={styles.textFieldContainer}
-        onPress={onPress}
-        activeOpacity={typeof onPress === 'function' ? 0.3 : 1}
-      >
+      <Pressable style={styles.textFieldContainer} onPress={onPress}>
         <TextInput
+          pointerEvents={onPress ? 'none' : 'auto'}
           autoCapitalize="none"
           textContentType="emailAddress"
           keyboardType="email-address"
@@ -37,7 +33,7 @@ const TextField = ({ label, icon, onPress, ...restProps }: TextFieldProps) => {
           {...restProps}
         />
         {icon}
-      </TouchableOpacity>
+      </Pressable>
     </View>
   )
 }
