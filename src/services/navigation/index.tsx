@@ -47,7 +47,7 @@ const Navigation = () => {
       theme={navigationTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {true ? (
+        {isUserAuthenticated ? (
           <>
             <Stack.Group>
               <Stack.Screen

@@ -1,6 +1,7 @@
 import { getMonitorSession } from 'data/auth/services'
 import { useQuery } from 'react-query'
 
+const EIGHT_SECONDS = 8000
 const useMonitorSessionService = (sessionKey: string) => {
   const query = useQuery(
     ['monitorSession', sessionKey],
@@ -9,7 +10,7 @@ const useMonitorSessionService = (sessionKey: string) => {
       enabled: Boolean(sessionKey),
       refetchOnWindowFocus: true,
       refetchIntervalInBackground: true,
-      refetchInterval: 15000,
+      refetchInterval: EIGHT_SECONDS,
     },
   )
 

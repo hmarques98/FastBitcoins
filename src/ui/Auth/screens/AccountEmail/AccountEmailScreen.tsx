@@ -30,7 +30,6 @@ const AccountEmailScreen = () => {
   const theme = useTheme()
   const scheme = useColorScheme()
   const isDark = scheme === 'dark'
-  console.log({ isDark })
 
   const styles = useMemo(() => createStyles(theme), [theme])
   const { push } = useNavigation<NavigationProps>()

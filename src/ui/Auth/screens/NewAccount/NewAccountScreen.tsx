@@ -60,8 +60,6 @@ const NewAccountScreen = () => {
   const [searchedCountry, setSearchedCountry] = useState('')
   const [searchedState, setSearchedState] = useState('')
 
-  console.log({ country, isCountrySelectedUnitedStates, state })
-
   if (isLoadingCountries) return <></>
 
   return (
