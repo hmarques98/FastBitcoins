@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, StatusBar } from 'react-native'
 import { useNavigation, useTheme } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -22,6 +22,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.circleContainer} />
       <View style={styles.languageContainer}>
         <Text style={styles.titleText}>Select your language</Text>
