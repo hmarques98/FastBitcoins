@@ -64,10 +64,11 @@ const signUp = async ({ email, country, countryState }: ISignUp) => {
 const getStorageValueSessionKey = async () =>
   await getStorageValue(STORAGE_KEY_SIGNUP)
 
-const getStorageValueUserSession = async (): Promise<IStorageUserSession> => {
-  const value = await getStorageValue(STORAGE_KEY_SESSION)
-  return value && JSON.parse(value)
-}
+const getStorageValueUserSession =
+  async (): Promise<IStorageUserSession | null> => {
+    const value = await getStorageValue(STORAGE_KEY_SESSION)
+    return value ? JSON.parse(value) : null
+  }
 
 const setStorageValueSessionKey = async ({
   email,

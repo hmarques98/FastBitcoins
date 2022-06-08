@@ -27,7 +27,7 @@ const useAuthClientState = () => {
   }, [])
 
   const authenticateSession = useCallback(
-    ({
+    async ({
       expired,
       secret,
       email,
@@ -36,12 +36,13 @@ const useAuthClientState = () => {
       secret: string
       email: string
     }) => {
-      setStorageValueSessionKey({
+      await setStorageValueSessionKey({
         email,
         expired,
         secret,
         sessionKey,
       })
+
       setIsAuthenticated?.(true)
     },
     [sessionKey, setIsAuthenticated],
