@@ -8,7 +8,6 @@ import { useAuthContext } from './AuthContext'
 
 const useAuthClientState = () => {
   const [sessionKey, setSessionKey] = useState('')
-  const [isAuth, setIsAuth] = useState<boolean>()
   const { isAuthenticated, setIsAuthenticated } = useAuthContext() || {}
 
   useEffect(() => {
@@ -22,9 +21,9 @@ const useAuthClientState = () => {
     ;(async () => {
       const value = await getStorageValueUserSession()
 
-      setIsAuth(Boolean(value?.secret))
+      setIsAuthenticated(Boolean(value?.secret))
     })()
-  }, [])
+  }, [setIsAuthenticated])
 
   const authenticateSession = useCallback(
     async ({
@@ -48,10 +47,7 @@ const useAuthClientState = () => {
     [sessionKey, setIsAuthenticated],
   )
 
-  const isUserAuthenticated = useMemo(
-    () => isAuthenticated || isAuth,
-    [isAuth, isAuthenticated],
-  )
+  const isUserAuthenticated = useMemo(() => isAuthenticated, [isAuthenticated])
 
   return { sessionKey, isUserAuthenticated, authenticateSession }
 }

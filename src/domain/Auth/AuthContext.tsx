@@ -1,15 +1,15 @@
 import React, { useContext, createContext, useState } from 'react'
 
-type AuthContextType = {
-  isAuthenticated: boolean
-  setIsAuthenticated?: React.Dispatch<React.SetStateAction<boolean>>
+export type AuthContextType = {
+  isAuthenticated: boolean | undefined
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | undefined>>
 }
-const AuthContext = createContext<AuthContextType | null>(null)
+const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 const AuthContextProvider = ({
   children,
 }: React.PropsWithChildren<unknown>) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>()
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
