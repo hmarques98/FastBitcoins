@@ -41,8 +41,16 @@
     "react-native/react-native": true
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      },
       "node": {
+        "paths": ["src"],
         "extensions": [
           ".js",
           ".jsx",
@@ -149,11 +157,11 @@
 
     // import
     "import/no-extraneous-dependencies": "error",
-    "import/no-named-as-default-member": "error",
+    "import/no-named-as-default-member": "warn",
     "import/order": "off",
     "import/no-duplicates": "error",
     "import/no-useless-path-segments": "error",
-    "import/no-cycle": "error",
+    "import/no-cycle": "off",
     "import/prefer-default-export": "off",
     "import/no-anonymous-default-export": "off",
     "import/named": "off",
@@ -161,6 +169,7 @@
     "import/default": "off",
     "import/no-named-as-default": "off",
     "import/no-unused-modules": "off",
-    "import/no-deprecated": "off"
+    "import/no-deprecated": "off",
+    "import/no-unresolved": "error"
   }
 }
