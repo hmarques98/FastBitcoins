@@ -4,15 +4,15 @@ import { useAuthContext } from '../AuthContext'
 import { getStorageValueUserSession } from 'data/auth/services'
 import { IStorageUserSession } from 'data/auth/services/models'
 
-const mockSetStorageValueSessionKey = jest.fn()
+const mockSetStorageValueUserSession = jest.fn()
 jest.mock('data/auth/services', () => {
   return {
     getStorageValueSessionKey: jest.fn().mockResolvedValue('123'),
     getStorageValueUserSession: jest.fn().mockResolvedValue({
       secret: '123',
     }),
-    setStorageValueSessionKey: (val: IStorageUserSession) =>
-      mockSetStorageValueSessionKey(val),
+    setStorageValueUserSession: (val: IStorageUserSession) =>
+      mockSetStorageValueUserSession(val),
   }
 })
 
@@ -96,13 +96,13 @@ describe('useAuthClientState', () => {
 
   describe('authenticateSession', () => {
     describe('SHOULD call authenticateSession', () => {
-      describe('AND setStorageValueSessionKey correctly', () => {
+      describe('AND setStorageValueUserSession correctly', () => {
         it('AND after value has been save locally SHOULD call isUserAuthenticated TO BE true', async () => {
           const { result, waitForNextUpdate } = renderHook(() =>
             useAuthClientState(),
           )
 
-          expect(mockSetStorageValueSessionKey).not.toHaveBeenCalled()
+          expect(mockSetStorageValueUserSession).not.toHaveBeenCalled()
           expect(result.current.isUserAuthenticated).toBeFalsy()
 
           await waitForNextUpdate()
@@ -110,7 +110,7 @@ describe('useAuthClientState', () => {
             result.current.authenticateSession(authenticateMockPayload)
           })
 
-          expect(mockSetStorageValueSessionKey).toHaveBeenCalledWith(
+          expect(mockSetStorageValueUserSession).toHaveBeenCalledWith(
             authenticateMockPayload,
           )
           expect(result.current.isUserAuthenticated).toBeTruthy()

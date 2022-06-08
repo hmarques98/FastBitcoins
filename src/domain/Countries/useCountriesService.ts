@@ -24,6 +24,7 @@ const useCountriesService = () => {
     data: statesByCountry,
     error: errorStatesByCountry,
   } = useMutation(_getStatesByCountry)
+
   const { country } = useCountriesClientState()
 
   const countriesOrderedByName = useMemo(

@@ -1,7 +1,7 @@
 import {
   getStorageValueSessionKey,
   getStorageValueUserSession,
-  setStorageValueSessionKey,
+  setStorageValueUserSession,
 } from 'data/auth/services'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useAuthContext } from './AuthContext'
@@ -36,7 +36,7 @@ const useAuthClientState = () => {
       secret: string
       email: string
     }) => {
-      await setStorageValueSessionKey({
+      await setStorageValueUserSession({
         email,
         expired,
         secret,
