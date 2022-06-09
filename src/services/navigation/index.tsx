@@ -12,7 +12,7 @@ import AuthNavigator from './Stacks/Auth'
 /* PLOP_INJECT_NAVIGATOR_IMPORT */
 import { SCREENS } from './Navigation.enums'
 import ProfileNavigator from './Stacks/Profile'
-import useAuthClientState from 'domain/Auth/useAuthClientState'
+import useAuthClientState from '@domain/Auth/useAuthClientState'
 
 export type RootStackParamList = {
   [SCREENS.AUTH_STACK]: undefined

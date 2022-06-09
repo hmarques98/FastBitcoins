@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import HomeScreen from 'ui/Profile/screens/Home'
+import HomeScreen from '@ui/Profile/screens/Home'
 /* PLOP_INJECT_SCREEN_IMPORT */
 
 import { SCREENS } from './Profile.enums'

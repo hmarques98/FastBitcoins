@@ -17,9 +17,10 @@ import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
 import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
 import TextField from '@shared-components/TextField'
 
+import useUserClientState from '@domain/User/useUserClientState'
+import useLoginService from '@domain/Auth/useLoginService'
+
 import createStyles from './AccountEmailScreen.styles'
-import useUserClientState from 'domain/User/useUserClientState'
-import useLoginService from 'domain/Auth/useLoginService'
 
 type NavigationProps = StackNavigationProp<
   AuthStackParamList,

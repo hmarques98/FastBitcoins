@@ -1,5 +1,5 @@
 import { signUp as _signUp } from 'data/auth/services'
-import useUserClientState from 'domain/User/useUserClientState'
+import useUserClientState from '@domain/User/useUserClientState'
 import { useCallback } from 'react'
 import { useMutation } from 'react-query'
 

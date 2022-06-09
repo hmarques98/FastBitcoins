@@ -8,13 +8,13 @@ import VerifyAccount from './components/VerifyAccount'
 
 import CheckSuccess from 'assets/images/CheckSuccess.svg'
 import EmailPending from 'assets/images/EmailPending.svg'
-import useAuthClientState from 'domain/Auth/useAuthClientState'
-import useMonitorSessionService from 'domain/Auth/useMonitorSessionService'
+import useAuthClientState from '@domain/Auth/useAuthClientState'
+import useMonitorSessionService from '@domain/Auth/useMonitorSessionService'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
 
 import { SCREENS as AuthScreens } from '@services/navigation/Stacks/Auth/Auth.enums'
-import useUserClientState from 'domain/User/useUserClientState'
+import useUserClientState from '@domain/User/useUserClientState'
 import { RootStackParamList } from '@services/navigation'
 
 type NavigationProps = StackNavigationProp<

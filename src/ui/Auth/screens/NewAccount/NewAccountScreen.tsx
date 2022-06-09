@@ -19,11 +19,11 @@ import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
 
 import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
 
-import useCountriesService from 'domain/Countries/useCountriesService'
-import useCountriesClientState from 'domain/Countries/useCountriesClientState'
+import useCountriesService from '@domain/Countries/useCountriesService'
+import useCountriesClientState from '@domain/Countries/useCountriesClientState'
 
 import createStyles from './NewAccountScreen.styles'
-import useSignUpService from 'domain/Auth/useSignUpService'
+import useSignUpService from '@domain/Auth/useSignUpService'
 
 type NavigationProps = StackNavigationProp<
   AuthStackParamList,

@@ -2,10 +2,10 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { SCREENS } from './Auth.enums'
-import AccountEmail from 'ui/Auth/screens/AccountEmail'
-import AccountVerified from 'ui/Auth/screens/AccountVerified'
-import HomeScreen from 'ui/Auth/screens/Home'
-import NewAccount from 'ui/Auth/screens/NewAccount'
+import AccountEmail from '@ui/Auth/screens/AccountEmail'
+import AccountVerified from '@ui/Auth/screens/AccountVerified'
+import HomeScreen from '@ui/Auth/screens/Home'
+import NewAccount from '@ui/Auth/screens/NewAccount'
 
 import Header from '../../components/Header'
 

@@ -78,7 +78,7 @@ module.exports = plop => {
         path: 'src/services/navigation/index.tsx',
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_SCREEN_IMPORT */`,
-        template: `import {{pascalCase name}} from 'ui/{{pascalCase module}}/screens/{{pascalCase name}}'`,
+        template: `import {{pascalCase name}} from '@ui/{{pascalCase module}}/screens/{{pascalCase name}}'`,
       },
       {
         // Action type 'append' injects a template into an existing file
@@ -280,7 +280,7 @@ module.exports = plop => {
         path: 'src/services/navigation/index.tsx',
         // Pattern tells plop where in the file to inject the template
         pattern: `/* PLOP_INJECT_SCREEN_IMPORT */`,
-        template: `import {{pascalCase name}} from 'ui/{{pascalCase module}}/screens/{{pascalCase name}}'`,
+        template: `import {{pascalCase name}} from '@ui/{{pascalCase module}}/screens/{{pascalCase name}}'`,
       },
       {
         // Action type 'append' injects a template into an existing file

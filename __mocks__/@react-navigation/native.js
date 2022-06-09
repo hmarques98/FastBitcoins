@@ -6,6 +6,7 @@ const dispatch = jest.fn()
 const canGoBack = jest.fn().mockReturnValue(true)
 const goBack = jest.fn()
 const reset = jest.fn()
+const push = jest.fn()
 
 const navigation = {
   reset,
@@ -14,8 +15,9 @@ const navigation = {
   canGoBack,
   goBack,
   dispatch,
+  push,
   addListener: jest.fn((name, l) => (listeners[name] = jest.fn(l))),
-  getListener: (name) => listeners[name],
+  getListener: name => listeners[name],
   triggerListener: (name, ...params) => listeners[name]?.(...params),
   resetListeners: () => {
     listeners = {}
@@ -36,6 +38,6 @@ module.exports = {
   ...RNN,
   useNavigation,
   useRoute: jest.fn(() => ({ params: {} })),
-  useNavigationState: (callback) => callback(navigationState),
-  setState: (state) => (navigationState = { ...navigationState, ...state }),
+  useNavigationState: callback => callback(navigationState),
+  setState: state => (navigationState = { ...navigationState, ...state }),
 }
