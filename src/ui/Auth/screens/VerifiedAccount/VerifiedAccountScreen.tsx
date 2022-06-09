@@ -1,21 +1,21 @@
 import React, { useEffect, useMemo } from 'react'
 import { Text, View } from 'react-native'
-import { useIsFocused, useNavigation, useTheme } from '@react-navigation/native'
-
-import createStyles from './VerifiedAccountScreen.styles'
-
-import VerifyAccount from './components/VerifyAccount'
+import { useNavigation, useTheme } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 import CheckSuccess from 'assets/images/CheckSuccess.svg'
 import EmailPending from 'assets/images/EmailPending.svg'
+
+import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
+import { SCREENS as AuthScreens } from '@services/navigation/Stacks/Auth/Auth.enums'
+import { RootStackParamList } from '@services/navigation'
+
 import useAuthClientState from '@domain/Auth/useAuthClientState'
 import useMonitorSessionService from '@domain/Auth/useMonitorSessionService'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
-
-import { SCREENS as AuthScreens } from '@services/navigation/Stacks/Auth/Auth.enums'
 import useUserClientState from '@domain/User/useUserClientState'
-import { RootStackParamList } from '@services/navigation'
+
+import createStyles from './VerifiedAccountScreen.styles'
+import VerifyAccount from './components/VerifyAccount'
 
 type NavigationProps = StackNavigationProp<
   AuthStackParamList & RootStackParamList,
@@ -26,8 +26,6 @@ const THREE_SECONDS = 3000
 const VerifiedAccountScreen = () => {
   const theme = useTheme()
   const navigation = useNavigation<NavigationProps>()
-
-  useIsFocused()
 
   const styles = useMemo(() => createStyles(theme), [theme])
 
@@ -84,7 +82,7 @@ const VerifiedAccountScreen = () => {
             resetUser()
             navigation.popToTop()
           }}
-          textButton="Cancelar"
+          textButton="Cancel"
         />
       )}
     </View>

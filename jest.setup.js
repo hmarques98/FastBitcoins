@@ -1,7 +1,15 @@
 import '@testing-library/jest-native/extend-expect'
 import { jest } from '@jest/globals'
+import { setLogger } from 'react-query'
 
 import 'react-native-gesture-handler/jestSetup'
+
+setLogger({
+  log: console.log,
+  warn: console.warn,
+  // ✅ no more errors on the console
+  error: () => {},
+})
 
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock')

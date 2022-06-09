@@ -66,6 +66,7 @@ const setStorageValueSessionKey = async (sessionKey: string) => {
 const getStorageValueUserSession =
   async (): Promise<IStorageUserSession | null> => {
     const value = await getStorageValue(STORAGE_KEY_USER_SESSION)
+
     return value ? JSON.parse(value) : null
   }
 

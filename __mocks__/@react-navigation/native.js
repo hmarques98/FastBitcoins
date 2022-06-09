@@ -7,6 +7,7 @@ const canGoBack = jest.fn().mockReturnValue(true)
 const goBack = jest.fn()
 const reset = jest.fn()
 const push = jest.fn()
+const popToTop = jest.fn()
 
 const navigation = {
   reset,
@@ -15,6 +16,7 @@ const navigation = {
   canGoBack,
   goBack,
   dispatch,
+  popToTop,
   push,
   addListener: jest.fn((name, l) => (listeners[name] = jest.fn(l))),
   getListener: name => listeners[name],

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 
 const EIGHT_SECONDS = 8000
 const useMonitorSessionService = (sessionKey: string) => {
-  const query = useQuery(
+  const { data, isLoading, isFetching } = useQuery(
     ['monitorSession', sessionKey],
     () => getMonitorSession(sessionKey),
     {
@@ -14,7 +14,7 @@ const useMonitorSessionService = (sessionKey: string) => {
     },
   )
 
-  return query
+  return { data, isLoading, isFetching }
 }
 
 export default useMonitorSessionService
