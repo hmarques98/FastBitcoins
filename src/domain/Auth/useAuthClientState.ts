@@ -2,7 +2,7 @@ import {
   getStorageValueSessionKey,
   getStorageValueUserSession,
   setStorageValueUserSession,
-} from 'data/auth/services'
+} from '@data/auth/services'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useAuthContext } from './AuthContext'
 

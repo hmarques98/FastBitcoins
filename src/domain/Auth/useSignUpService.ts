@@ -1,4 +1,7 @@
-import { signUp as _signUp } from 'data/auth/services'
+import {
+  setStorageValueSessionKey,
+  signUp as _signUp,
+} from '@data/auth/services'
 import useUserClientState from '@domain/User/useUserClientState'
 import { useCallback } from 'react'
 import { useMutation } from 'react-query'
@@ -11,11 +14,12 @@ const useSignUpService = () => {
   const { mutateAsync, data, isError, isLoading } = useMutation(_signUp)
 
   const signUp = useCallback(async () => {
-    await mutateAsync({
+    const response = await mutateAsync({
       country: alphaCountryCode,
       email,
       countryState: countryStateCode,
     })
+    await setStorageValueSessionKey(response.session_key)
   }, [alphaCountryCode, countryStateCode, email, mutateAsync])
 
   return { data, isError, isLoading, signUp }

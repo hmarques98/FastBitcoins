@@ -1,14 +1,16 @@
-import { login } from 'data/auth/services'
 import { useMutation } from 'react-query'
+import { login, setStorageValueSessionKey } from '@data/auth/services'
 
 const useLoginService = () => {
-  const { mutateAsync, data, isError, isLoading } = useMutation(login)
+  const { mutateAsync, ...rest } = useMutation(login)
   const doLogin = async (email: string) => {
     const response = await mutateAsync(email)
+    await setStorageValueSessionKey(response.session_key)
+
     return response
   }
 
-  return { data, isError, isLoading, doLogin }
+  return { doLogin, ...rest }
 }
 
 export default useLoginService

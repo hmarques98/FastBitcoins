@@ -11,6 +11,7 @@ module.exports = function (api) {
             { '@shared-components': './src/shared/components' },
             { '@shared-constants': './src/shared/constants' },
             { '@domain': './src/domain' },
+            { '@data': './src/data' },
             { '@ui': './src/ui' },
             { '@font-size': './src/shared/theme/font-size' },
             { '@api': './src/services/api/index' },

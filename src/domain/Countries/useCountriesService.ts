@@ -4,8 +4,8 @@ import { useQuery, useMutation } from 'react-query'
 import {
   getCountries,
   getStatesByCountry as _getStatesByCountry,
-} from 'data/countries/services'
-import { GetCountries } from 'data/countries/services/models'
+} from '@data/countries/services'
+import { GetCountries } from '@data/countries/services/models'
 
 import useCountriesClientState from './useCountriesClientState'
 

@@ -1,4 +1,4 @@
-import { getMonitorSession } from 'data/auth/services'
+import { getMonitorSession } from '@data/auth/services'
 import { useQuery } from 'react-query'
 
 const EIGHT_SECONDS = 8000

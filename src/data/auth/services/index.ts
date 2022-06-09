@@ -38,8 +38,6 @@ const login = async (email: string) => {
     platform,
   })
 
-  await setStorageValue(STORAGE_KEY_SIGNUP, response.data.session_key)
-
   return response.data
 }
 
@@ -55,14 +53,15 @@ const signUp = async ({ email, country, countryState }: ISignUp) => {
     country,
     state: countryState,
   })
-
-  await setStorageValue(STORAGE_KEY_SIGNUP, response.data.session_key)
-
   return response.data
 }
 
 const getStorageValueSessionKey = async () =>
   await getStorageValue(STORAGE_KEY_SIGNUP)
+
+const setStorageValueSessionKey = async (sessionKey: string) => {
+  await setStorageValue(STORAGE_KEY_SIGNUP, sessionKey)
+}
 
 const getStorageValueUserSession =
   async (): Promise<IStorageUserSession | null> => {
@@ -91,4 +90,5 @@ export {
   getStorageValueSessionKey,
   getStorageValueUserSession,
   setStorageValueUserSession,
+  setStorageValueSessionKey,
 }

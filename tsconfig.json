@@ -33,6 +33,7 @@
       "@shared-components/*": ["./shared/components/*"],
       "@shared-constants": ["./shared/constants"],
       "@domain/*": ["./domain/*"],
+      "@data/*": ["./data/*"],
       "@ui/*": ["./ui/*"],
       "@font-size": ["./shared/theme/font-size"],
       "@api": ["./services/api/index"],

@@ -1,17 +1,26 @@
 import { render as rtlRender } from '@testing-library/react-native'
+import { renderHook as rltRenderHook } from '@testing-library/react-hooks'
 import type { RenderOptions } from '@testing-library/react-native'
-import React, { ReactElement } from 'react'
+import React, { PropsWithChildren, ReactElement } from 'react'
 import { Provider } from 'react-redux'
 import { configureStore, PreloadedState, Store } from '@reduxjs/toolkit'
 import { reducers } from '@services/redux/RootReducer'
 import { RootState } from '@services/redux/Store'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import AuthContextProvider from '@domain/Auth/AuthContext'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>
   store?: Store
 }
 
+const queryClient = new QueryClient()
+
+const CustomQueryClientProvider = ({
+  children,
+}: PropsWithChildren<unknown>) => (
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+)
 function render(ui: ReactElement, options?: ExtendedRenderOptions) {
   const { preloadedState } = options || {}
 
@@ -22,14 +31,10 @@ function render(ui: ReactElement, options?: ExtendedRenderOptions) {
       preloadedState,
     })
 
-  const wrapper = ({ children }: { children: React.ReactNode }) => {
-    const queryClient = new QueryClient()
-
+  const wrapper = ({ children }: PropsWithChildren<unknown>) => {
     return (
       <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
+        <CustomQueryClientProvider>{children}</CustomQueryClientProvider>
       </Provider>
     )
   }
@@ -37,5 +42,16 @@ function render(ui: ReactElement, options?: ExtendedRenderOptions) {
   return rtlRender(ui, { wrapper, ...options })
 }
 
+const renderHook = <TProps, TResult>(
+  hookCallback: (props: TProps) => TResult,
+) => {
+  return rltRenderHook(hookCallback, {
+    wrapper: ({ children }) => (
+      <CustomQueryClientProvider>
+        <AuthContextProvider>{children}</AuthContextProvider>
+      </CustomQueryClientProvider>
+    ),
+  })
+}
 export * from '@testing-library/react-native'
-export { render }
+export { render, renderHook }

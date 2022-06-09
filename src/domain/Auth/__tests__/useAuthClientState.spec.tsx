@@ -2,11 +2,11 @@ import React from 'react'
 import { renderHook, act } from '@testing-library/react-hooks'
 import useAuthClientState from '../useAuthClientState'
 import AuthContextProvider from '../AuthContext'
-import { getStorageValueUserSession } from 'data/auth/services'
-import { IStorageUserSession } from 'data/auth/services/models'
+import { getStorageValueUserSession } from '@data/auth/services'
+import { IStorageUserSession } from '@data/auth/services/models'
 
 const mockSetStorageValueUserSession = jest.fn()
-jest.mock('data/auth/services', () => {
+jest.mock('@data/auth/services', () => {
   return {
     getStorageValueSessionKey: jest.fn().mockResolvedValue('123'),
     getStorageValueUserSession: jest.fn().mockResolvedValue({
