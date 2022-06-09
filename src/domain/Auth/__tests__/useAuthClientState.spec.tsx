@@ -97,13 +97,14 @@ describe('useAuthClientState', () => {
           expect(result.current.isUserAuthenticated).toBeFalsy()
 
           await waitForNextUpdate()
-          act(() => {
-            result.current.authenticateSession(authenticateMockPayload)
+          await act(async () => {
+            await result.current.authenticateSession(authenticateMockPayload)
           })
 
           expect(mockSetStorageValueUserSession).toHaveBeenCalledWith(
             authenticateMockPayload,
           )
+
           expect(result.current.isUserAuthenticated).toBeTruthy()
         })
       })

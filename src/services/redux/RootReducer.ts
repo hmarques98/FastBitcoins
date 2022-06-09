@@ -28,6 +28,4 @@ export const persistedRootReducer = persistCombineReducers(
   reducers,
 )
 
-export type RootState = ReturnType<typeof persistedRootReducer>
-
 export default persistedRootReducer
