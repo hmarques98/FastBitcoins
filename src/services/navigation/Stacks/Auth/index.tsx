@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { SCREENS } from './Auth.enums'
 import AccountEmail from '@ui/Auth/screens/AccountEmail'
-import AccountVerified from '@ui/Auth/screens/AccountVerified'
+import VerifiedAccount from '@ui/Auth/screens/VerifiedAccount'
 import HomeScreen from '@ui/Auth/screens/Home'
 import NewAccount from '@ui/Auth/screens/NewAccount'
 
@@ -25,7 +25,7 @@ const AuthNavigator = () => {
       <Stack.Screen name={SCREENS.AUTH_HOME} component={HomeScreen} />
       <Stack.Screen
         name={SCREENS.AUTH_ACCOUNT_VERIFIED}
-        component={AccountVerified}
+        component={VerifiedAccount}
         options={{ title: 'Your title' }}
       />
       <Stack.Group

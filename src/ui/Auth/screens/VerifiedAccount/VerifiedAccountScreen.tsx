@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import { useIsFocused, useNavigation, useTheme } from '@react-navigation/native'
 
-import createStyles from './AccountVerifiedScreen.styles'
+import createStyles from './VerifiedAccountScreen.styles'
 
 import VerifyAccount from './components/VerifyAccount'
 
@@ -23,7 +23,7 @@ type NavigationProps = StackNavigationProp<
 >
 
 const THREE_SECONDS = 3000
-const AccountVerifiedScreen = () => {
+const VerifiedAccountScreen = () => {
   const theme = useTheme()
   const navigation = useNavigation<NavigationProps>()
 
@@ -61,7 +61,11 @@ const AccountVerifiedScreen = () => {
   ])
 
   if (isLoading || isFetching || secretSessionVerified === undefined)
-    return <></>
+    return (
+      <View style={[styles.container, { justifyContent: 'center' }]}>
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    )
 
   return (
     <View style={styles.container}>
@@ -86,4 +90,4 @@ const AccountVerifiedScreen = () => {
     </View>
   )
 }
-export default AccountVerifiedScreen
+export default VerifiedAccountScreen

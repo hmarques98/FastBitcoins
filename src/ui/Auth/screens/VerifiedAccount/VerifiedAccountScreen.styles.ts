@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { ExtendedTheme } from '@react-navigation/native'
+import { fonts } from '@fonts'
 
 export default (theme: ExtendedTheme) => {
   const { colors } = theme
@@ -13,5 +14,10 @@ export default (theme: ExtendedTheme) => {
     },
 
     buttonContainer: { width: '100%' },
+    loadingText: {
+      fontFamily: fonts.title,
+      color: theme.colors.secondary,
+      fontSize: 32,
+    },
   })
 }
