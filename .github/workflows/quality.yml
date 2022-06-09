@@ -16,10 +16,10 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2.2.0
         with:
           node-version: 16.13.x
-          cache: npm
+          cache: yarn
           
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
