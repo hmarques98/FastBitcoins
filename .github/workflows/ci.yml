@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build
-        uses: ./.github/workflows/node-env
+        uses: ./.github/workflows/node-env.yml
         
 #       - name: Run linter
 #         run: yarn lint
