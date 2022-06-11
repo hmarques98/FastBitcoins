@@ -8,7 +8,9 @@ jobs:
     name: Build CI
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout and install packages
+      - name: Checkout the commit
+        uses: actions/checkout@v3
+      - name: Install packages
         uses: ./.github/actions/node-env
         
       - name: Run linter
