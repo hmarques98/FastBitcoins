@@ -3,6 +3,9 @@ description: 'Using Node 16.x and Yarn'
 runs:
   using: "composite"
   steps:
+    - name: Checkout commit
+      uses: actions/checkout@v3
+      
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
