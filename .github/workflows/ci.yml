@@ -8,7 +8,6 @@ jobs:
     name: Build CI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Checkout and install packages
         # Directory name only
         uses: ./.github/actions/node-env
