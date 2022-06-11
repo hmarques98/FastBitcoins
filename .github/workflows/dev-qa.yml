@@ -1,0 +1,18 @@
+name: Development QA
+
+on: 
+  pull_request:
+
+
+jobs: 
+  ci: 
+    uses: ./.github/workflows/ci.yml
+  qa_android:
+    if: success()
+    needs: [ci]
+    uses: ./.github/workflows/cd-qa-android.yml
+  release_notes:
+    if: success()
+    needs: [ci, qa_android]
+    uses: ./.github/workflows/release-notes.yml
+  
