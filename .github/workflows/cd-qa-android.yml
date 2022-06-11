@@ -58,10 +58,12 @@ jobs:
 
       ## upload artifact to action
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: Gakko App Bundle
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          name: App Bundle
+#         path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          path: android/app/build/outputs/apk/release/
+         
 
 #       ## Distribute app to Firebase App Distribution for testing / use google play internal track if you have a google play account
 #       - name: upload artifact to Firebase App Distribution
