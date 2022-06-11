@@ -1,0 +1,20 @@
+name: Pull Request Pipeline
+
+on: 
+  pull_request:
+
+jobs: 
+  ci: 
+    name: Setup Node and install packages
+    uses: ./.github/workflows/ci.yml
+  qa_android:
+    if: success()
+    needs: [ci]
+    name: Build Android
+    uses: ./.github/workflows/cd-qa-android.yml
+#   release_notes:
+#     if: success()
+#     needs: [ci, qa_android]
+#     name: Release Notes
+#     uses: ./.github/workflows/release-notes.yml
+  
