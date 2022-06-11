@@ -92,7 +92,7 @@
     "prettier": "cd src && npx prettier --write . && git add .",
     "prepare": "husky install",
     "test": "jest ./src --runInBand --force-exit ",
-    "test:ci": "jest ./src --coverage --collectCoverageFrom='./src/**'' ",
+    "test:ci": "jest ./src --coverage --collectCoverageFrom='./src/**' ",
     "lint": "eslint .",
     "generate": "plop"
   },
