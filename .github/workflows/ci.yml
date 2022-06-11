@@ -1,0 +1,20 @@
+name: CI
+on: 
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Build CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the commit
+        uses: actions/checkout@v3
+      - name: Install packages
+        uses: ./.github/actions/node-env
+        
+      - name: Run linter
+        run: yarn lint
+        
+      - name: Run Tests
+        run: yarn test
