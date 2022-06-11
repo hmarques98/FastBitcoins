@@ -13,8 +13,8 @@ jobs:
         # Directory name only
         uses: ./.github/actions/node-env
         
-#       - name: Run linter
-#         run: yarn lint
+      - name: Run linter
+        run: yarn lint
         
-#       - name: Run Tests
-#         run: yarn test
+      - name: Run Tests
+        run: yarn test
