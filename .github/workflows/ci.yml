@@ -8,10 +8,10 @@ jobs:
     name: Build CI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node and Install packages
+
+      - name: Checkout and install packages
         # Directory name only
-        uses: ./.github/actions/node-env
+        uses: FastBitcoins/.github/actions/node-env@hmarques98-ci
         
 #       - name: Run linter
 #         run: yarn lint
