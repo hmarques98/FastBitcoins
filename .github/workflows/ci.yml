@@ -8,7 +8,8 @@ jobs:
     name: Build CI
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/node-env
+      - name: Checkout and install packages
+        uses: ./.github/actions/node-env
         
       - name: Run linter
         run: yarn lint
