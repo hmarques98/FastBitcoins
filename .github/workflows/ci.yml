@@ -11,7 +11,7 @@ jobs:
 
       - name: Checkout and install packages
         # Directory name only
-        uses: actions/node-env@hmarques09-ci
+        uses: ./FastBitcoins/.github/actions/node-env
         
 #       - name: Run linter
 #         run: yarn lint
