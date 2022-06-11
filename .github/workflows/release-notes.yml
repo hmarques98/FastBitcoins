@@ -1,4 +1,4 @@
-name: Milestone Closure
+name: Release notes
 
 on: 
   workflow_call:
@@ -7,13 +7,8 @@ jobs:
   create-release-notes:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Create Release Notes
-      uses: docker://decathlon/release-notes-generator-action:2.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OUTPUT_FOLDER: temp_release_notes
-        USE_MILESTONE_TITLE: "true"
+    - uses: actions/checkout@v3
+    
     - uses: johnyherangi/create-release-notes@main
       id: create-release-notes
       env:
