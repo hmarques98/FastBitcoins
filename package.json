@@ -91,7 +91,8 @@
     "test:apk": "react-native run-android --variant=release",
     "prettier": "cd src && npx prettier --write . && git add .",
     "prepare": "husky install",
-    "test": "jest --runInBand --force-exit ",
+    "test": "jest ./src --runInBand --force-exit ",
+    "test:ci": "jest ./src --coverage --collectCoverageFrom='./src/**'' ",
     "lint": "eslint .",
     "generate": "plop"
   },
