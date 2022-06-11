@@ -8,10 +8,12 @@ runs:
       with:
         node-version: '16.x'
         cache: 'yarn'
+      shell: bash
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+      shell: bash
 
     - name: Restore node_modules from cache
       uses: actions/cache@v3
@@ -21,5 +23,7 @@ runs:
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
+      shell: bash
     - name: Install dependencies
       run: yarn --frozen-lockfile
+      shell: bash
