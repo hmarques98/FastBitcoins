@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Checkout and install packages
         # Directory name only
-        uses: ./FastBitcoins/.github/actions/node-env
+        uses: ./.github/actions/node-env
         
 #       - name: Run linter
 #         run: yarn lint
