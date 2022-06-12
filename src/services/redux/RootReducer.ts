@@ -2,8 +2,10 @@ import { persistCombineReducers, PersistConfig } from 'redux-persist'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import userReducer, {
-  InitialState as UserStore,
-} from './slices/user/UserReducers'
+  IUserInitialState as UserStore,
+} from './slices/user/UserReducer'
+import { PersistPartial } from 'redux-persist/es/persistReducer'
+import { Action } from '@reduxjs/toolkit'
 
 export const reducers = {
   user: userReducer,
@@ -19,13 +21,23 @@ const persistConfig: PersistConfig<{
   key: 'root',
   storage: AsyncStorage,
   timeout: undefined,
-  whitelist: [],
+  whitelist: ['user'],
   // debug: __DEV__,
 }
 
-export const persistedRootReducer = persistCombineReducers(
-  persistConfig,
-  reducers,
-)
+const persistedRootReducer = persistCombineReducers(persistConfig, reducers)
+
+type State =
+  | ({
+      user: UserStore
+    } & PersistPartial)
+  | undefined
+
+export const rootReducer = (state: State, action: Action<any>) => {
+  if (action.type === 'RESET') {
+    state = undefined
+  }
+  return persistedRootReducer(state, action)
+}
 
 export default persistedRootReducer
