@@ -1,4 +1,4 @@
-name: CI
+name: Continous Integration
 on: 
   workflow_call:
   push: 
@@ -17,7 +17,7 @@ jobs:
       - name: Run Eslint
         run: yarn lint
         
-      - name: Run ci tests & publish code coverage
+      - name: Run CI tests & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: 50bae8c690f8779f7a13a33326adef1dad122fd316540a799fc4507d3b4285fb
