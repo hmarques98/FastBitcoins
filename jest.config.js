@@ -17,9 +17,9 @@ module.exports = {
     '\\.svg': '<rootDir>/__mocks__/svgMock.js',
   },
   collectCoverageFrom: ['./src/**'],
-  coverageThreshold: {
-    global: {
-      lines: 90,
-    },
-  },
+  // coverageThreshold: {
+  //   global: {
+  //     lines: 90,
+  //   },
+  // },
 }
