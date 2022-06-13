@@ -9,7 +9,6 @@ export default (theme: ExtendedTheme) => {
       flex: 1,
       justifyContent: 'center',
     },
-    icon: { marginBottom: 34 },
     messageTextsContainer: { marginBottom: 24 },
     messageTitleText: {
       fontFamily: fonts.title,

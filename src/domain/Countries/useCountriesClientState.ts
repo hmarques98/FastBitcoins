@@ -1,11 +1,11 @@
 import {
   setCountry,
   setCountryState,
-} from '@services/redux/slices/user/UserReducers'
+} from '@services/redux/slices/user/UserReducer'
 import { useAppDispatch, useAppSelector } from '@services/redux/Store'
 
 const useCountriesClientState = () => {
-  const { country, state } = useAppSelector(({ user }) => user.userData)
+  const { country, state } = useAppSelector(({ user }) => user)
   const dispatch = useAppDispatch()
 
   const handleSelectedCountry = ({

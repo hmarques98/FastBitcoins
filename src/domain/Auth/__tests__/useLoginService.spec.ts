@@ -15,10 +15,10 @@ jest.mock('@data/auth/services', () => {
 const EMAIL = 'email@email.com'
 
 describe('useLoginService', () => {
-  it('Should return correct values', async () => {
+  it('SHOULD return correct values', async () => {
     mockLogin.mockResolvedValue({
-      session_key: '1234',
-      new_account: false,
+      sessionKey: '1234',
+      newAccount: false,
       reactivation: false,
     })
     const { result, waitFor } = renderHook(() => useLoginService())
@@ -32,8 +32,8 @@ describe('useLoginService', () => {
     expect(mockLogin).toHaveBeenCalledWith(EMAIL)
     expect(mockSetStorageValueSessionKey).toHaveBeenCalledWith('1234')
     expect(result.current.data).toEqual({
-      session_key: '1234',
-      new_account: false,
+      sessionKey: '1234',
+      newAccount: false,
       reactivation: false,
     })
   })

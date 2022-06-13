@@ -5,7 +5,7 @@ const useLoginService = () => {
   const { mutateAsync, ...rest } = useMutation(login)
   const doLogin = async (email: string) => {
     const response = await mutateAsync(email)
-    await setStorageValueSessionKey(response.session_key)
+    await setStorageValueSessionKey(response.sessionKey)
 
     return response
   }

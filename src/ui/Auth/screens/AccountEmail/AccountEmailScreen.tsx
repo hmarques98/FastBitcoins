@@ -59,7 +59,7 @@ const AccountEmailScreen = () => {
             onPress={async () => {
               const response = await doLogin(user.email)
 
-              if (response.session_key)
+              if (response.sessionKey)
                 return push(SCREENS.AUTH_ACCOUNT_VERIFIED)
               push(SCREENS.AUTH_NEW_ACCOUNT)
             }}

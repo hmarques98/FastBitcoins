@@ -37,8 +37,12 @@ const login = async (email: string) => {
     ['email_address']: email,
     platform,
   })
-
-  return response.data
+  const { new_account, reactivation, session_key } = response.data
+  return {
+    newAccount: new_account,
+    sessionKey: session_key,
+    reactivation,
+  }
 }
 
 const signUp = async ({ email, country, countryState }: ISignUp) => {
@@ -53,7 +57,9 @@ const signUp = async ({ email, country, countryState }: ISignUp) => {
     country,
     state: countryState,
   })
-  return response.data
+
+  const { session_key } = response.data
+  return { sessionKey: session_key }
 }
 
 const getStorageValueSessionKey = async () =>
