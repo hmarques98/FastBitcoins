@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "frontend": ["src/"],
+    "ci": ["**/.github/**/*"]
+  }
+}

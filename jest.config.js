@@ -16,4 +16,10 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
     '\\.svg': '<rootDir>/__mocks__/svgMock.js',
   },
+  collectCoverageFrom: ['./src/**'],
+  // coverageThreshold: {
+  //   global: {
+  //     lines: 90,
+  //   },
+  // },
 }

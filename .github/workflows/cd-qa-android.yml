@@ -1,5 +1,3 @@
-name: Android QA Build
-
 on:
   workflow_call:
 

@@ -1,6 +1,6 @@
 {
   "name": "fastbitcoins",
-  "version": "0.0.1",
+  "version": "1.3.0",
   "private": true,
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
@@ -91,7 +91,8 @@
     "test:apk": "react-native run-android --variant=release",
     "prettier": "cd src && npx prettier --write . && git add .",
     "prepare": "husky install",
-    "test": "jest --runInBand --force-exit ",
+    "test": "jest ./src --runInBand --force-exit ",
+    "test:ci": "jest ./src --coverage --collectCoverageFrom='./src/**' ",
     "lint": "eslint .",
     "generate": "plop"
   },

@@ -1,4 +1,4 @@
-name: CI
+name: Continous Integration
 on: 
   workflow_call:
   push: 
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build CI
+    name: Setup Node, Install packages, Run Eslint, and Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the commit
@@ -14,8 +14,13 @@ jobs:
       - name: Install packages
         uses: ./.github/actions/node-env
         
-      - name: Run linter
+      - name: Run Eslint
         run: yarn lint
         
-      - name: Run Tests
-        run: yarn test
+      - name: Run CI tests & publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: 50bae8c690f8779f7a13a33326adef1dad122fd316540a799fc4507d3b4285fb
+        with:
+          coverageCommand: yarn test:ci
+          debug: true

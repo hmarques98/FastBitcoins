@@ -4,14 +4,22 @@ on:
   pull_request:
 
 jobs: 
+  validate_pr_title:
+    if: success()
+    name: Validate PR title
+    uses: ./.github/workflows/pull_request_lint.yml
+
   ci: 
-    name: Setup Node and install packages
+    if: success()
+    needs: [validate_pr_title]
+    name: Code quality
     uses: ./.github/workflows/ci.yml
   qa_android:
     if: success()
     needs: [ci]
     name: Build Android
     uses: ./.github/workflows/cd-qa-android.yml
+ 
 #   release_notes:
 #     if: success()
 #     needs: [ci, qa_android]
