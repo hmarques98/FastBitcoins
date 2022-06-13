@@ -8,7 +8,7 @@ import { AuthStackParamList } from '@services/navigation/Stacks/Auth'
 import { SCREENS } from '@services/navigation/Stacks/Auth/Auth.enums'
 import Button from '@shared-components/Button'
 
-import createStyles from './HomeScreen.style'
+import createStyles from './HomeScreen.styles'
 
 type NavigationProps = StackNavigationProp<
   AuthStackParamList,

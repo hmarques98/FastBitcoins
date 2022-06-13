@@ -69,13 +69,13 @@ const VerifiedAccountScreen = () => {
     <View style={styles.container}>
       {secretSessionVerified ? (
         <VerifyAccount
-          Icon={CheckSuccess}
           title="Email verified"
           subtitle="Please wait while we redirect you"
-        />
+        >
+          <CheckSuccess style={styles.icon} />
+        </VerifyAccount>
       ) : (
         <VerifyAccount
-          Icon={EmailPending}
           title="Verify your email"
           subtitle="Please check your emails"
           onPress={() => {
@@ -83,7 +83,9 @@ const VerifiedAccountScreen = () => {
             navigation.popToTop()
           }}
           textButton="Cancel"
-        />
+        >
+          <EmailPending style={styles.icon} />
+        </VerifyAccount>
       )}
     </View>
   )

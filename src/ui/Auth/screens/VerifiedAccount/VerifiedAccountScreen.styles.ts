@@ -19,5 +19,6 @@ export default (theme: ExtendedTheme) => {
       color: theme.colors.secondary,
       fontSize: 32,
     },
+    icon: { marginBottom: 34 },
   })
 }
