@@ -19,7 +19,7 @@ const useSignUpService = () => {
       email,
       countryState: countryStateCode,
     })
-    await setStorageValueSessionKey(response.session_key)
+    await setStorageValueSessionKey(response.sessionKey)
   }, [alphaCountryCode, countryStateCode, email, mutateAsync])
 
   return { data, isError, isLoading, signUp }

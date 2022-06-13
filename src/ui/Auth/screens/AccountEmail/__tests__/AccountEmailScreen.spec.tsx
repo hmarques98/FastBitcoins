@@ -39,7 +39,7 @@ describe('AccountEmailScreen', () => {
 
   describe('GIVEN a valid email typed SHOULD enable button to continue', () => {
     it('AND WHEN email typed is a registered email SHOULD navigate to Account Verified Screen', async () => {
-      mockDoLogin.mockResolvedValueOnce({ session_key: '123' })
+      mockDoLogin.mockResolvedValueOnce({ sessionKey: '123' })
       const { queryByPlaceholderText, getByText } = setupScreen()
 
       const textField = queryByPlaceholderText('Your email address')

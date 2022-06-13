@@ -21,11 +21,11 @@ const mockCountryState = {
 }
 
 describe('User Slice', () => {
-  test('should return the initial state', () => {
+  test('SHOULD return the initial state', () => {
     expect(userReducer(undefined, { type: '' })).toEqual(initialState)
   })
 
-  test('should handle email value', () => {
+  test('SHOULD handle email value', () => {
     const newState = {
       ...initialState,
       email: fakeEmail,
@@ -35,7 +35,7 @@ describe('User Slice', () => {
     )
   })
 
-  test('should handle country value', () => {
+  test('SHOULD handle country value', () => {
     const newState: UserReducer.IUserInitialState = {
       ...initialState,
       ...mockCountry,
@@ -44,7 +44,7 @@ describe('User Slice', () => {
     expect(userReducer(initialState, setCountry(mockCountry))).toEqual(newState)
   })
 
-  test('should handle country state value', () => {
+  test('SHOULD handle country state value', () => {
     const newState: UserReducer.IUserInitialState = {
       ...initialState,
       ...mockCountryState,
@@ -55,7 +55,7 @@ describe('User Slice', () => {
     ).toEqual(newState)
   })
 
-  test('should reset user state value to initial state', () => {
+  test('SHOULD reset user state value to initial state', () => {
     const previousState: UserReducer.IUserInitialState = {
       ...initialState,
       ...mockCountryState,
